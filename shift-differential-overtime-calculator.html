@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="show-slots">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,9 @@ header a:focus-visible,footer a:focus-visible,.hero a:focus-visible,.pagehead a:
 main.wrap{padding-top:24px;padding-bottom:16px}
 .ad-slot{display:flex;flex-direction:column;align-items:center;margin:0;padding:0;border:0;background:none;min-height:0;overflow:hidden}
 .ad-slot>*{margin:20px auto;max-width:100%}
+.show-slots .ad-slot{min-height:110px;margin:0 0 28px;border:2px dashed #94a3b8;border-radius:14px;background:#f8fafc}
+.show-slots .ad-slot::before{content:"AD SLOT: " attr(id) " (" attr(data-ad-slot) ") - paste Adsterra code inside this div";color:#475569;font-size:14px;font-weight:700;text-align:center;padding:42px 14px}
+.show-slots .ad-slot>*{margin:12px auto}
 h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
 .card{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:32px;margin:0 0 28px}
 .card h2{font-size:26px;margin:0 0 18px}.card h3{font-size:19px;margin:0 0 10px}
@@ -39,14 +42,14 @@ h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
 .cta:hover{background:var(--accent-d);color:#fff}
 .pagehead{background:linear-gradient(135deg,#0b1b3a,#13357a);color:#fff;border-radius:20px;padding:34px 36px;margin:8px 0 28px;box-shadow:var(--sh)}
 .pagehead h1{margin:0 0 12px;font-size:clamp(28px,4.2vw,42px);line-height:1.12}
-.pagehead p{margin:0 0 8px;color:#dbe7ff;max-width:85ch}.pagehead p:last-child{margin-bottom:0}.pagehead .small{color:#b9cbec}.pagehead a{color:#fff}
+.pagehead p{margin:0 0 8px;color:#dbe7ff}.pagehead p:last-child{margin-bottom:0}.pagehead .small{color:#b9cbec}.pagehead a{color:#fff}
 .tool{display:grid;grid-template-columns:1fr auto;gap:14px 32px;align-items:center;background:var(--soft);border:1px solid #cfe0ff;border-radius:16px;padding:26px}
 .tool h3{margin:0 0 8px;font-size:22px}.tool p{margin:0 0 8px}.tool p:last-child{margin:0}
 .coming{margin:18px 0 0;font-size:14px;color:var(--muted)}
 .features{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .features li{padding:20px;border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;background:#fbfdff}
 .features strong{display:block;font-size:17px;margin-bottom:6px}
-.prose>*{max-width:80ch}.prose h2{font-size:22px;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}.prose h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.prose h2{font-size:22px;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}.prose h2:first-child{margin-top:0;padding-top:0;border-top:0}
 .prose p{margin:0 0 14px}
 .notice{background:#fff8e1;border:1px solid #f1d98a;border-radius:12px;padding:14px 18px;margin:0 0 28px;color:#5b4300}
 .placeholder{background:#fff3bf;color:#7a4b00;padding:2px 8px;border-radius:6px;font-weight:700}
