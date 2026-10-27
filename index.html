@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="show-slots">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +28,10 @@ main.wrap{padding-top:24px;padding-bottom:16px}
 .show-slots .ad-slot::before{content:"AD SLOT: " attr(id) " (" attr(data-ad-slot) ") - paste Adsterra code inside this div";color:#475569;font-size:14px;font-weight:700;text-align:center;padding:42px 14px}
 .show-slots .ad-slot>*{margin:12px auto}
 h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
+.coffee{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:#fff;border-radius:18px;box-shadow:var(--sh);padding:22px 28px;margin:0 0 28px}
+.coffee p{margin:0;font-weight:600}
+.coffee-btn{display:inline-block;background:#ffdd00;color:#0f172a;font-weight:800;font-size:17px;padding:13px 24px;border-radius:12px;text-decoration:none;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
+.coffee-btn:hover{background:#f5cf00;color:#0f172a}
 .card{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:32px;margin:0 0 28px}
 .card h2{font-size:26px;margin:0 0 18px}.card h3{font-size:19px;margin:0 0 10px}
 .small,.hint{font-size:14px;color:var(--muted)}.hint{margin:8px 0 0}
@@ -91,8 +95,8 @@ footer.site{background:var(--navy);color:#b9cbec;margin-top:24px;padding:34px 0 
 footer.site p{margin:0 0 8px}footer.site a{color:#fff}
 @media(max-width:900px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.metrics,.ex-grid,.tool{grid-template-columns:1fr}.days{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
-@media(max-width:640px){.wrap{padding:0 16px}.grid{grid-template-columns:1fr}.card{padding:22px 18px;border-radius:16px}.card h2{font-size:23px}.hero{padding:36px 22px;border-radius:20px}.pagehead{padding:26px 22px}.features{grid-template-columns:1fr}header nav a{font-size:14px;padding:6px 10px}.results{padding:20px 16px}.days-set{padding:14px 12px 18px}th,td{padding:8px 6px;font-size:14px}.cta{display:block;text-align:center}.actions button{flex:1 1 auto}}
-@media print{.ad-slot,button,header.site,.skip,.actions{display:none!important}body{background:#fff}.card,.results,.hero,.pagehead{box-shadow:none}footer.site{background:#fff;color:#333}footer.site a{color:#000}}
+@media(max-width:640px){.coffee{padding:20px 18px}.coffee-btn{display:block;width:100%;text-align:center}.wrap{padding:0 16px}.grid{grid-template-columns:1fr}.card{padding:22px 18px;border-radius:16px}.card h2{font-size:23px}.hero{padding:36px 22px;border-radius:20px}.pagehead{padding:26px 22px}.features{grid-template-columns:1fr}header nav a{font-size:14px;padding:6px 10px}.results{padding:20px 16px}.days-set{padding:14px 12px 18px}th,td{padding:8px 6px;font-size:14px}.cta{display:block;text-align:center}.actions button{flex:1 1 auto}}
+@media print{.coffee,.ad-slot,button,header.site,.skip,.actions{display:none!important}body{background:#fff}.card,.results,.hero,.pagehead{box-shadow:none}footer.site{background:#fff;color:#333}footer.site a{color:#000}}
 </style>
 </head>
 <body>
@@ -125,6 +129,7 @@ footer.site p{margin:0 0 8px}footer.site a{color:#fff}
 <li><strong>Estimate only.</strong> Results are planning estimates, not legal, tax or payroll advice. See the <a href="disclaimer.html">disclaimer</a>.</li>
 </ul>
 </section>
+<aside class="coffee" aria-label="Support this site"><p>Found this free tool useful? Help keep it free.</p><a class="coffee-btn" href="https://buymeacoffee.com/YOUR-USERNAME" target="_blank" rel="noopener noreferrer">&#9749; Buy me a coffee</a></aside>
 </main>
 <footer class="site"><div class="wrap"><p>Pay &amp; Work Tools — free pay calculators. <a href="about.html">About</a> · <a href="privacy-policy.html">Privacy Policy</a> · <a href="disclaimer.html">Disclaimer</a></p></div></footer>
 </body>
