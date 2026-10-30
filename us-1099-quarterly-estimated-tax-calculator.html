@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="apple-touch-icon" href="favicon.jpg">
+<title>US 1099 Quarterly Estimated Tax Calculator (Self-Employment + Income Tax) — WageWise</title>
+<meta name="description" content="Free US quarterly estimated tax calculator for 1099 freelancers and self-employed workers. Works out self-employment tax (15.3%), federal income tax, your total tax for the year, the quarterly payment, and the safe-harbor payment. No signup, all calculations run in your browser.">
+<meta name="robots" content="index, follow">
+<style>
+:root{--navy:#0b1b3a;--accent:#1a63f0;--accent-d:#1250c9;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--bg:#f3f6fb;--soft:#eef4ff;--sh:0 1px 2px rgba(15,23,42,.06),0 10px 30px rgba(15,23,42,.07)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}[hidden]{display:none!important}
+body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:#1250c9;text-underline-offset:2px}a:hover{color:#0b3a9a}
+:focus-visible{outline:3px solid #3b82f6;outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:8px 14px;border-radius:8px;z-index:100}.skip:focus{left:8px}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+header.site{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 20px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:18px}.brand:hover{color:#fff}
+.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#4d8dff,#1a63f0);font-size:14px;letter-spacing:-.5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+header nav{display:flex;flex-wrap:wrap;gap:2px 4px}
+header nav a{color:#d3e0f8;text-decoration:none;font-size:15px;padding:8px 12px;border-radius:8px}
+header nav a:hover,header nav a[aria-current=page]{background:rgba(255,255,255,.13);color:#fff}
+header a:focus-visible,footer a:focus-visible,.hero a:focus-visible,.pagehead a:focus-visible{outline-color:#93c5fd}
+main.wrap{padding-top:24px;padding-bottom:16px}
+.ad-slot{display:flex;flex-direction:column;align-items:center;margin:0;padding:0;border:0;background:none;min-height:0;overflow:hidden}
+.ad-slot>*{margin:20px auto;max-width:100%}
+.show-slots .ad-slot{min-height:110px;margin:0 0 28px;border:2px dashed #94a3b8;border-radius:14px;background:#f8fafc}
+.show-slots .ad-slot::before{content:"AD SLOT: " attr(id) " (" attr(data-ad-slot) ") - paste Adsterra code inside this div";color:#475569;font-size:14px;font-weight:700;text-align:center;padding:42px 14px}
+.show-slots .ad-slot>*{margin:12px auto}
+h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
+.coffee{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:#fff;border-radius:18px;box-shadow:var(--sh);padding:22px 28px;margin:0 0 28px}
+.coffee p{margin:0;font-weight:600}
+.coffee-btn{display:inline-block;background:#ffdd00;color:#0f172a;font-weight:800;font-size:17px;padding:13px 24px;border-radius:12px;text-decoration:none;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
+.coffee-btn:hover{background:#f5cf00;color:#0f172a}
+.card{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:32px;margin:0 0 28px}
+.card h2{font-size:26px;margin:0 0 18px}.card h3{font-size:19px;margin:0 0 10px}
+.small,.hint{font-size:14px;color:var(--muted)}.hint{margin:8px 0 0}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b1b3a 0%,#13357a 62%,#1a63f0 135%);color:#fff;border-radius:24px;padding:56px 40px;margin:8px 0 28px;box-shadow:var(--sh)}
+.hero::after{content:"";position:absolute;right:-90px;top:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.4),transparent 70%)}
+.hero>*{position:relative;z-index:1;max-width:720px}
+.hero h1{font-size:clamp(34px,5.5vw,56px);line-height:1.08;margin:0 0 16px;letter-spacing:-.025em}
+.hero .lead{font-size:clamp(17px,2.2vw,21px);color:#dbe7ff;margin:0 0 12px}
+.hero .trust{font-size:15px;color:#b9cbec;margin:0 0 28px}
+.cta{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:18px;padding:15px 28px;border-radius:12px;text-decoration:none;box-shadow:0 0 0 3px rgba(255,255,255,.22),0 8px 20px rgba(26,99,240,.35)}
+.cta:hover{background:var(--accent-d);color:#fff}
+.pagehead{background:linear-gradient(135deg,#0b1b3a,#13357a);color:#fff;border-radius:20px;padding:34px 36px;margin:8px 0 28px;box-shadow:var(--sh)}
+.pagehead h1{margin:0 0 12px;font-size:clamp(28px,4.2vw,42px);line-height:1.12}
+.pagehead p{margin:0 0 8px;color:#dbe7ff}.pagehead p:last-child{margin-bottom:0}.pagehead .small{color:#b9cbec}.pagehead a{color:#fff}
+.tool{display:grid;grid-template-columns:1fr auto;gap:14px 32px;align-items:center;background:var(--soft);border:1px solid #cfe0ff;border-radius:16px;padding:26px}
+.tool h3{margin:0 0 8px;font-size:22px}.tool p{margin:0 0 8px}.tool p:last-child{margin:0}
+.coming{margin:18px 0 0;font-size:14px;color:var(--muted)}
+.features{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.features li{padding:20px;border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;background:#fbfdff}
+.features strong{display:block;font-size:17px;margin-bottom:6px}
+.prose h2{font-size:22px;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}.prose h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.prose p{margin:0 0 14px}
+.notice{background:#fff8e1;border:1px solid #f1d98a;border-radius:12px;padding:14px 18px;margin:0 0 28px;color:#5b4300}
+.placeholder{background:#fff3bf;color:#7a4b00;padding:2px 8px;border-radius:6px;font-weight:700}
+label{display:block;font-weight:600;margin:20px 0 8px}
+input,select{width:100%;min-height:54px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font:inherit;font-size:18px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:3px solid rgba(59,130,246,.35);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.days-set{border:1.5px solid var(--line);border-radius:16px;padding:18px 20px 22px;margin:26px 0 0;min-width:0}
+.days-set legend{padding:0 8px}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.days label{margin-top:8px;font-size:15px;text-align:center}.days input{padding:12px 6px;text-align:center}
+button{font:inherit;font-weight:700;font-size:17px;min-height:50px;padding:12px 24px;border:0;border-radius:12px;background:var(--accent);color:#fff;cursor:pointer}
+button:hover{background:var(--accent-d)}button.secondary{background:#e6efff;color:#0f2a5c}button.secondary:hover{background:#d3e2ff}
+button.sm{min-height:38px;padding:6px 14px;font-size:15px;margin-left:6px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.error{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:12px;padding:14px 18px;margin-top:20px;font-weight:600}
+.results{margin-top:30px;background:linear-gradient(180deg,#eaf2ff,#f8fbff);border:1px solid #cfe0ff;border-radius:20px;padding:28px}
+.results h2{font-size:18px;color:var(--muted);margin:0}
+.big{font-size:clamp(28px,5vw,42px);font-weight:800;color:var(--navy);margin:6px 0 8px;letter-spacing:-.02em;line-height:1.15}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}
+.row{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.row span{font-size:14px;color:var(--muted)}.row strong{font-size:18px;overflow-wrap:anywhere}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0 14px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);font-size:15px}
+th{background:#f1f5f9;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}tr:last-child td{border-bottom:0}
+.steps p{margin:0 0 12px;padding:16px 20px;background:#f5f9ff;border-left:4px solid var(--accent);border-radius:0 12px 12px 0}.steps p:last-of-type{margin-bottom:0}
+.ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ex{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:24px}.ex p:last-child{margin-bottom:0}
+.card ul:not(.features){padding-left:22px}.card li{margin-bottom:8px}
+.sources{border-left:5px solid var(--accent)}.sources p{margin:0;overflow-wrap:anywhere}
+details{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;background:#fff}
+details[open]{border-color:#bcd2ff;background:#fbfdff}
+summary{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:24px;line-height:1;color:var(--accent);flex:none}
+details[open] summary::after{content:"\2013"}
+details p{margin:0;padding:0 20px 18px;color:#334155}
+textarea{width:100%;min-height:120px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font:inherit;font-size:18px;background:#fff;color:var(--ink);resize:vertical}
+textarea:focus{outline:3px solid rgba(59,130,246,.35);border-color:var(--accent)}
+.warn{background:#fffbeb;border:1px solid #fde68a;color:#78350f;border-radius:14px;padding:16px 20px;margin:0 0 28px}
+#accrualWarn.warn{margin:20px 0 0;border-radius:12px;padding:14px 18px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+button.tab{background:#e6efff;color:#0f2a5c}button.tab:hover{background:#d3e2ff}
+button.tab[aria-selected="true"]{background:var(--navy);color:#fff}
+.tool+.tool{margin-top:16px}
+@media(max-width:640px){.tabs button{flex:1 1 100%}}
+#calcResults>.row{flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:10px 0}
+#calcResults>.row span{font-size:16px;color:var(--ink)}#calcResults>.row strong{text-align:right}
+#calcResults>.small{margin:0}#calcResults .warn{margin:16px 0 0}#calcResults table{margin-top:16px;background:#fff}
+.ex-grid.x3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){.ex-grid.x3{grid-template-columns:1fr}}
+code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
+footer.site{background:var(--navy);color:#b9cbec;margin-top:24px;padding:34px 0 44px;font-size:14px}
+footer.site p{margin:0 0 8px}footer.site a{color:#fff}
+@media(max-width:900px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.metrics,.ex-grid,.tool{grid-template-columns:1fr}.days{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
+@media(max-width:640px){.coffee{padding:20px 18px}.coffee-btn{display:block;width:100%;text-align:center}.wrap{padding:0 16px}.grid{grid-template-columns:1fr}.card{padding:22px 18px;border-radius:16px}.card h2{font-size:23px}.hero{padding:36px 22px;border-radius:20px}.pagehead{padding:26px 22px}.features{grid-template-columns:1fr}header nav a{font-size:14px;padding:6px 10px}.results{padding:20px 16px}.days-set{padding:14px 12px 18px}th,td{padding:8px 6px;font-size:14px}.cta{display:block;text-align:center}.actions button{flex:1 1 auto}}
+@media print{.coffee,.ad-slot,button,header.site,.skip,.actions{display:none!important}body{background:#fff}.card,.results,.hero,.pagehead{box-shadow:none}footer.site{background:#fff;color:#333}footer.site a{color:#000}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"US 1099 Quarterly Estimated Tax Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Calculates federal self-employment tax, federal income tax, total tax, quarterly estimated payments and the safe-harbor payment for 1099 and self-employed workers, for tax year 2026."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Who has to pay quarterly estimated tax?","acceptedAnswer":{"@type":"Answer","text":"Generally, anyone who expects to owe $1,000 or more in federal tax for the year after withholding and refundable credits, and whose withholding will cover less than 90% of this year's tax or 100% of last year's tax (110% if prior-year adjusted gross income was over $150,000, or $75,000 if married filing separately). That covers most freelancers, independent contractors and gig workers with no employer withholding."}},
+{"@type":"Question","name":"What is the safe harbor?","acceptedAnswer":{"@type":"Answer","text":"Pay at least 100% of last year's total tax (110% if your prior-year adjusted gross income was over $150,000, or $75,000 if married filing separately), in four equal payments, and you will not owe an underpayment penalty even if this year's tax turns out higher. You may still owe a balance when you file. Paying 90% of this year's tax is the other safe harbor."}},
+{"@type":"Question","name":"Why are the quarters uneven?","acceptedAnswer":{"@type":"Answer","text":"The IRS payment periods are January 1 to March 31, April 1 to May 31, June 1 to August 31, and September 1 to December 31. The second period is only two months. The due dates for 2026 income are April 15, 2026, June 15, 2026, September 15, 2026, and January 15, 2027. A due date that falls on a weekend or holiday moves to the next business day."}},
+{"@type":"Question","name":"Does the QBI deduction reduce self-employment tax?","acceptedAnswer":{"@type":"Answer","text":"No. A qualified business income deduction, if you qualify, reduces federal income tax only. It does not reduce self-employment tax. This calculator therefore applies any QBI amount you enter to taxable income, not to the self-employment tax base."}},
+{"@type":"Question","name":"Does this cover state tax?","acceptedAnswer":{"@type":"Answer","text":"No. This is federal tax only. Most states with an income tax have their own estimated payment rules, rates and due dates, which are separate from the federal schedule."}},
+{"@type":"Question","name":"Is this tax advice?","acceptedAnswer":{"@type":"Answer","text":"No. This is an estimate for planning, using the 2026 federal figures and the standard deduction unless you enter an itemized amount. Credits, retirement contributions, health insurance deductions, uneven income and other situations can change the real figure. For a filing decision, check IRS Form 1040-ES and Publication 505, or speak to a tax professional."}}
+]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap bar"><a class="brand" href="index.html"><span class="logo" aria-hidden="true">W</span><span>WageWise</span></a><nav aria-label="Main"><a href="shift-differential-overtime-calculator.html">Shift &amp; Overtime Calculator</a><a href="uk-irregular-hours-holiday-pay-calculator.html">UK Holiday Pay Calculator</a><a href="us-1099-quarterly-estimated-tax-calculator.html" aria-current="page">US 1099 Tax Calculator</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></nav></div></header>
+<main class="wrap" id="main">
+<!-- ===== ADSTERRA AD SLOT 1: TOP BANNER ===== -->
+<!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-1" data-ad-slot="top-banner">
+
+</div>
+
+<section class="pagehead"><h1>US 1099 Quarterly Estimated Tax Calculator</h1>
+<p><strong>For freelancers, independent contractors and gig workers.</strong> Work out your federal self-employment tax, federal income tax, total tax for the year, your quarterly payment, and the safe-harbor payment that avoids an underpayment penalty. All maths runs in your browser. Nothing you type is uploaded or stored.</p>
+<p class="small">Federal tax only, tax year 2026. Estimate only, not tax advice. See the <a href="disclaimer.html">disclaimer</a>.</p></section>
+
+<div class="warn"><strong>Check this first.</strong> This calculator is for self-employment (1099) income. It uses the 2026 federal figures: self-employment tax 15.3% on 92.35% of net earnings, Social Security wage base $184,500, and the 2026 standard deductions ($16,100 single / married filing separately, $32,200 married filing jointly, $24,150 head of household). It does <strong>not</strong> cover state tax, and it does not model credits beyond the single credits figure you enter, retirement contributions, or uneven income during the year (for uneven income, see IRS Form 2210, Schedule AI).</div>
+
+<section class="card" aria-labelledby="calc-heading">
+<h2 id="calc-heading">Estimate your quarterly payment</h2>
+
+<label for="filingStatus">Filing status</label>
+<select id="filingStatus">
+<option value="single" selected>Single</option>
+<option value="mfj">Married filing jointly</option>
+<option value="mfs">Married filing separately</option>
+<option value="hoh">Head of household</option>
+</select>
+
+<div class="grid">
+<div>
+<label for="netSE">Annual net self-employment income ($)</label>
+<input id="netSE" type="number" min="0" step="0.01" inputmode="decimal" value="80000" placeholder="e.g. 80000">
+<p class="hint">Gross 1099 income minus business expenses, for the full year. If you only know part of the year so far, annualise it first.</p>
+</div>
+<div>
+<label for="otherIncome">Other income for the year ($, optional)</label>
+<input id="otherIncome" type="number" min="0" step="0.01" inputmode="decimal" value="0" placeholder="e.g. 0">
+<p class="hint">W-2 wages, interest, rent, and so on. Enter 0 if all your income is self-employment income.</p>
+</div>
+</div>
+
+<label for="deductionType">Deduction</label>
+<select id="deductionType">
+<option value="standard" selected>Standard deduction (automatic for your filing status)</option>
+<option value="itemized">Itemized deductions (enter the amount below)</option>
+</select>
+<label for="itemized">Itemized deduction amount ($, only if you chose itemized)</label>
+<input id="itemized" type="number" min="0" step="0.01" inputmode="decimal" value="0" placeholder="e.g. 0">
+
+<div class="grid">
+<div>
+<label for="qbi">Qualified business income (QBI) deduction ($, optional)</label>
+<input id="qbi" type="number" min="0" step="0.01" inputmode="decimal" value="0" placeholder="e.g. 0">
+<p class="hint">Enter 0 if you are unsure or do not qualify. QBI reduces income tax only, never self-employment tax.</p>
+</div>
+<div>
+<label for="credits">Federal tax credits ($, optional)</label>
+<input id="credits" type="number" min="0" step="0.01" inputmode="decimal" value="0" placeholder="e.g. 0">
+<p class="hint">Non-withholding credits that reduce your total tax. Do not put withholding here.</p>
+</div>
+</div>
+
+<div class="grid">
+<div>
+<label for="withholding">Tax already withheld ($, optional)</label>
+<input id="withholding" type="number" min="0" step="0.01" inputmode="decimal" value="0" placeholder="e.g. 0">
+<p class="hint">W-2 withholding for the year, if any. Withholding counts even if it was withheld late in the year.</p>
+</div>
+<div>
+<label for="estPaid">Estimated payments already made this year ($, optional)</label>
+<input id="estPaid" type="number" min="0" step="0.01" inputmode="decimal" value="0" placeholder="e.g. 0">
+<p class="hint">Form 1040-ES payments you have already sent for this tax year.</p>
+</div>
+</div>
+
+<h3>Safe harbor (optional, but recommended)</h3>
+<p class="hint">Enter last year's total tax to see the payment that avoids an underpayment penalty even if this year is better than expected.</p>
+<div class="grid">
+<div>
+<label for="priorTax">Last year's total tax ($) — Form 1040, line 24</label>
+<input id="priorTax" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 12000">
+</div>
+<div>
+<label for="priorHigh">Was last year's AGI over $150,000 ($75,000 if married filing separately)?</label>
+<select id="priorHigh">
+<option value="no" selected>No — safe harbor is 100% of last year's tax</option>
+<option value="yes">Yes — safe harbor is 110% of last year's tax</option>
+</select>
+</div>
+</div>
+
+<div class="actions"><button type="button" id="calcBtn">Calculate quarterly payment</button>
+<button type="button" class="secondary" id="exampleBtn">Fill worked example: single freelancer, $80,000</button>
+<button type="button" class="secondary" id="exampleHighBtn">Fill worked example: single freelancer, $250,000</button>
+<button type="button" class="secondary" id="copyBtn">Copy result</button>
+<button type="button" class="secondary" id="shareBtn">Share link</button>
+<button type="button" class="secondary" id="printBtn">Print</button></div>
+<div id="calcError"></div>
+<div id="calcResults" class="results" style="display:none"></div>
+</section>
+
+<!-- ===== ADSTERRA AD SLOT 2: IN-CONTENT BANNER ===== -->
+<!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-2" data-ad-slot="in-content">
+ <script async="async" data-cfasync="false" src="https://bauval.org/21/7c40d392fadb47e47e891b7e176e9310"></script>
+  <div id="container-7c40d392fadb47e47e891b7e176e9310"></div>
+</div>
+
+<section class="card steps" aria-labelledby="how-heading">
+<h2 id="how-heading">How the maths works</h2>
+<p><strong>Step 1 — Self-employment tax.</strong> Net self-employment income × 92.35% = the self-employment earnings base. Social Security tax is 12.4% of that base, up to the 2026 wage base of $184,500. Medicare tax is 2.9% of the whole base, with no cap. The additional 0.9% Medicare tax applies to the base above $200,000 (single / head of household), $250,000 (married filing jointly) or $125,000 (married filing separately), assuming no W-2 Medicare wages — if you also have W-2 wages, the threshold is shared. Half of the self-employment tax is deductible when working out income tax. No self-employment tax is due if net earnings are under $400.</p>
+<p><strong>Step 2 — Income tax.</strong> Adjusted gross income = net self-employment income + other income − half of self-employment tax. Taxable income = adjusted gross income − standard or itemized deduction − any QBI deduction you entered. Income tax is then worked out bracket by bracket at 10%, 12%, 22%, 24%, 32%, 35% and 37% — only the slice of income inside each bracket is taxed at that bracket's rate.</p>
+<p><strong>Step 3 — Quarterly payment.</strong> Total tax = income tax + self-employment tax. Subtract credits and withholding to get the amount estimated payments must cover, then divide by 4. That assumes income is spread evenly through the year. If your income is lumpy, the IRS annualized income installment method (Form 2210, Schedule AI) may give a lower payment for an early quarter.</p>
+</section>
+
+<section class="card">
+<h2>Worked examples (tax year 2026, standard deduction, no credits or withholding)</h2>
+<div class="ex-grid x3">
+<article class="ex"><p><strong>Example 1 — Single freelancer, $80,000 net self-employment income.</strong> Self-employment base $73,880.00; Social Security $9,161.12; Medicare $2,142.52; self-employment tax $11,303.64. Half deductible: $5,651.82. Adjusted gross income $74,348.18; taxable income $58,248.18; income tax $7,526.60. Total tax $18,830.24; <strong>quarterly payment $4,707.56</strong>.</p></article>
+<article class="ex"><p><strong>Example 2 — Safe harbor.</strong> Last year's total tax $12,000 and last year's AGI not over $150,000: safe harbor is $12,000 for the year, or <strong>$3,000 per quarter</strong>. Paying that in four equal payments avoids an underpayment penalty even if this year's tax is higher, though a balance may still be due at filing.</p></article>
+<article class="ex"><p><strong>Example 3 — Single freelancer, $250,000 net self-employment income.</strong> Self-employment base $230,875.00; Social Security capped at $22,878.00; Medicare $6,695.38; additional Medicare $277.88; self-employment tax $29,851.26. Income tax $46,527.80. Total tax $76,379.06; <strong>quarterly payment $19,094.77</strong>.</p></article>
+</div>
+</section>
+
+<section class="card">
+<h2>2026 due dates (for 2026 income)</h2>
+<div class="tablewrap"><table>
+<tr><th>Income period</th><th>Due date</th></tr>
+<tr><td>January 1 – March 31, 2026</td><td>April 15, 2026</td></tr>
+<tr><td>April 1 – May 31, 2026</td><td>June 15, 2026</td></tr>
+<tr><td>June 1 – August 31, 2026</td><td>September 15, 2026</td></tr>
+<tr><td>September 1 – December 31, 2026</td><td>January 15, 2027</td></tr>
+</table></div>
+<p class="hint">If a due date falls on a weekend or holiday it moves to the next business day. Pay with Form 1040-ES, or online through IRS Direct Pay / EFTPS. Keep a record of each payment.</p>
+</section>
+
+<section class="card">
+<h2>Limitations</h2>
+<ul>
+<li>Federal tax only. State estimated tax is separate.</li>
+<li>Uses the standard deduction unless you enter an itemized amount. It does not model retirement contributions (SEP IRA, Solo 401(k)), the self-employed health insurance deduction, or most credits beyond the single credits figure you enter.</li>
+<li>Additional Medicare tax here assumes no W-2 Medicare wages. If you have both W-2 and self-employment income, the $200,000 / $250,000 / $125,000 threshold is shared across both.</li>
+<li>Equal quarterly payments assume even income. Uneven income needs Form 2210, Schedule AI, or you may overpay early quarters.</li>
+<li>Figures are the 2026 federal figures (IRS Revenue Procedure 2025-32). The IRS updates brackets, the wage base and the standard deduction every year.</li>
+</ul>
+</section>
+
+<section class="card sources">
+<p class="small">Sources checked 30 October 2026: IRS Revenue Procedure 2025-32 (2026 brackets and standard deductions, as summarised by IRS guidance), IRS Schedule SE instructions (92.35% base, 15.3% rate, wage base), IRS estimated tax guidance and Form 1040-ES (due dates, $1,000 threshold, 90% / 100% / 110% safe harbor).</p>
+</section>
+
+<section class="card" aria-labelledby="faq-heading">
+<h2 id="faq-heading">Frequently asked questions</h2>
+<details><summary>Do I have to pay quarterly, or can I just pay at filing?</summary><p>If you expect to owe $1,000 or more after withholding and credits, the IRS generally requires quarterly payments. Paying only at filing can mean an underpayment penalty plus interest, even if you pay the full balance with your return.</p></details>
+<details><summary>What if my income drops mid-year?</summary><p>Re-run the estimate with the lower annual figure and reduce later quarters. The safe harbor based on last year's tax still protects you from a penalty if you paid it in full, but you are not forced to keep paying last year's amount if this year's tax is genuinely lower — the 90% of this year's tax safe harbor is the other route.</p></details>
+<details><summary>Is withholding treated differently from estimated payments?</summary><p>Yes. Withholding is treated as paid evenly through the year no matter when it was actually withheld, which is why a W-2 job can cover a late-year freelance windfall. Estimated payments count only from the date they are actually paid, so a missed quarter cannot be fixed by overpaying later without a possible penalty for that quarter.</p></details>
+<details><summary>Do I need to file anything with each payment?</summary><p>No return is filed quarterly. You send the payment with a Form 1040-ES voucher, or pay online. You reconcile everything on your annual return.</p></details>
+<details><summary>What if I already missed a quarter?</summary><p>Pay as soon as you can. The penalty is calculated per quarter on the shortfall, so paying late stops it growing, but it does not erase the penalty for the period already missed. Form 2210 works it out, and it can also waive or reduce it in some cases, for example for uneven income.</p></details>
+<details><summary>Is this tax advice?</summary><p>No. This is an estimate for planning. Tax situations vary — credits, retirement plans, health insurance, rental income and state tax can all change the answer. Check IRS Form 1040-ES and Publication 505, or speak to a tax professional, before relying on a figure for filing.</p></details>
+</section>
+
+<!-- ===== ADSTERRA AD SLOT 3: BOTTOM BANNER ===== -->
+<!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-3" data-ad-slot="bottom-banner">
+ 
+</div>
+
+</main>
+<footer class="site"><div class="wrap"><p><a href="index.html">WageWise</a> · <a href="about.html">About</a> · <a href="privacy-policy.html">Privacy</a> · <a href="disclaimer.html">Disclaimer</a></p>
+<p>Estimate only, not tax, legal or payroll advice. Federal tax only, tax year 2026. Figures checked 30 October 2026; the IRS updates them every year.</p></div></footer>
+<script>
+var BRACKETS = {
+  single: [[12400,0.10],[50400,0.12],[105700,0.22],[201775,0.24],[256225,0.32],[640600,0.35],[Infinity,0.37]],
+  mfj: [[24800,0.10],[100800,0.12],[211400,0.22],[403550,0.24],[512450,0.32],[768700,0.35],[Infinity,0.37]],
+  mfs: [[12400,0.10],[50400,0.12],[105700,0.22],[201775,0.24],[256225,0.32],[384350,0.35],[Infinity,0.37]],
+  hoh: [[17700,0.10],[67450,0.12],[105700,0.22],[201775,0.24],[256200,0.32],[640600,0.35],[Infinity,0.37]]
+};
+var STD_DED = {single:16100, mfj:32200, mfs:16100, hoh:24150};
+var ADD_MED_THRESHOLD = {single:200000, mfj:250000, mfs:125000, hoh:200000};
+var SS_WAGE_BASE = 184500;
+function money(n){ return '$' + n.toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2}); }
+function round2(n){ return Math.round(n*100)/100; }
+function incomeTax(taxable, status){
+  var brackets = BRACKETS[status], tax = 0, prev = 0, rows = [];
+  for (var i = 0; i < brackets.length; i++){
+    var cap = brackets[i][0], rate = brackets[i][1];
+    if (taxable <= prev) break;
+    var slice = Math.min(taxable, cap) - prev;
+    if (slice > 0){ var t = slice * rate; tax += t; rows.push({from: prev, to: Math.min(taxable, cap), rate: rate, amount: round2(t)}); }
+    prev = cap;
+  }
+  return {tax: round2(tax), rows: rows};
+}
+function computeEstimate(inp){
+  var fields = ['netSE','otherIncome','itemized','qbi','credits','withholding','estPaid'];
+  for (var i = 0; i < fields.length; i++){
+    var v = inp[fields[i]];
+    if (v === undefined || v === null || isNaN(v) || v < 0) return {error: 'Please enter 0 or a positive number for every amount.'};
+  }
+  if (inp.deductionType === 'itemized' && (!inp.itemized || inp.itemized <= 0)) return {error: 'You chose itemized deductions — enter the itemized amount, or switch back to the standard deduction.'};
+  if (inp.priorTax !== '' && inp.priorTax !== null && inp.priorTax !== undefined && (isNaN(inp.priorTax) || inp.priorTax < 0)) return {error: 'Please enter 0 or a positive number for last year\'s tax, or leave it blank.'};
+  var netSE = inp.netSE, other = inp.otherIncome;
+  var seBase = netSE >= 400 ? round2(netSE * 0.9235) : 0;
+  var ssTax = round2(0.124 * Math.min(seBase, SS_WAGE_BASE));
+  var medTax = round2(0.029 * seBase);
+  var addMed = round2(0.009 * Math.max(0, seBase - ADD_MED_THRESHOLD[inp.filingStatus]));
+  var seTax = round2(ssTax + medTax + addMed);
+  var halfSE = round2(seTax / 2);
+  var agi = round2(netSE + other - halfSE);
+  var deduction = inp.deductionType === 'itemized' ? inp.itemized : STD_DED[inp.filingStatus];
+  var taxable = Math.max(0, round2(agi - deduction - inp.qbi));
+  var inc = incomeTax(taxable, inp.filingStatus);
+  var totalTax = round2(inc.tax + seTax);
+  var required = Math.max(0, round2(totalTax - inp.credits - inp.withholding));
+  var quarterly = round2(required / 4);
+  var balance = round2(totalTax - inp.credits - inp.withholding - inp.estPaid);
+  var safeAnnual = null, safeQuarterly = null;
+  if (inp.priorTax !== '' && inp.priorTax !== null && inp.priorTax !== undefined && inp.priorTax > 0){
+    safeAnnual = round2(inp.priorTax * (inp.priorHigh ? 1.10 : 1.00));
+    safeQuarterly = round2(Math.max(0, safeAnnual - inp.withholding) / 4);
+  }
+  var gross = netSE + other;
+  var marginal = 0;
+  for (var j = 0; j < BRACKETS[inp.filingStatus].length; j++){ if (taxable > (j === 0 ? 0 : BRACKETS[inp.filingStatus][j-1][0])) marginal = BRACKETS[inp.filingStatus][j][1]; }
+  return {seBase: seBase, ssTax: ssTax, medTax: medTax, addMed: addMed, seTax: seTax, halfSE: halfSE,
+    agi: agi, deduction: deduction, taxable: taxable, incomeTax: inc.tax, bracketRows: inc.rows,
+    totalTax: totalTax, required: required, quarterly: quarterly, balance: balance,
+    safeAnnual: safeAnnual, safeQuarterly: safeQuarterly, needEstimated: required >= 1000,
+    marginal: marginal, effective: gross > 0 ? round2(totalTax / gross * 100) : 0};
+}
+if (typeof document !== 'undefined'){
+  function readInputs(){
+    return {filingStatus: document.getElementById('filingStatus').value,
+      netSE: parseFloat(document.getElementById('netSE').value) || 0,
+      otherIncome: parseFloat(document.getElementById('otherIncome').value) || 0,
+      deductionType: document.getElementById('deductionType').value,
+      itemized: parseFloat(document.getElementById('itemized').value) || 0,
+      qbi: parseFloat(document.getElementById('qbi').value) || 0,
+      credits: parseFloat(document.getElementById('credits').value) || 0,
+      withholding: parseFloat(document.getElementById('withholding').value) || 0,
+      estPaid: parseFloat(document.getElementById('estPaid').value) || 0,
+      priorTax: document.getElementById('priorTax').value === '' ? '' : (parseFloat(document.getElementById('priorTax').value) || 0),
+      priorHigh: document.getElementById('priorHigh').value === 'yes'};
+  }
+  function render(r){
+    var errEl = document.getElementById('calcError'), out = document.getElementById('calcResults');
+    if (r.error){ errEl.innerHTML = '<div class="error">' + r.error + '</div>'; out.style.display = 'none'; return; }
+    errEl.innerHTML = '';
+    var rows = '';
+    rows += '<div class="row"><span>Self-employment earnings base (92.35% of net SE income)</span><strong>' + money(r.seBase) + '</strong></div>';
+    rows += '<div class="row"><span>Social Security tax (12.4%, capped at $184,500 base)</span><strong>' + money(r.ssTax) + '</strong></div>';
+    rows += '<div class="row"><span>Medicare tax (2.9%, no cap)</span><strong>' + money(r.medTax) + '</strong></div>';
+    rows += '<div class="row"><span>Additional Medicare tax (0.9% above threshold)</span><strong>' + money(r.addMed) + '</strong></div>';
+    rows += '<div class="row"><span><strong>Self-employment tax</strong></span><strong>' + money(r.seTax) + '</strong></div>';
+    rows += '<div class="row"><span>Half of self-employment tax (deductible)</span><strong>' + money(r.halfSE) + '</strong></div>';
+    rows += '<div class="row"><span>Adjusted gross income (AGI)</span><strong>' + money(r.agi) + '</strong></div>';
+    rows += '<div class="row"><span>Deduction used</span><strong>' + money(r.deduction) + '</strong></div>';
+    rows += '<div class="row"><span>Taxable income</span><strong>' + money(r.taxable) + '</strong></div>';
+    rows += '<div class="row"><span>Federal income tax</span><strong>' + money(r.incomeTax) + '</strong></div>';
+    var brow = '<table><tr><th>Bracket slice</th><th>Rate</th><th>Tax</th></tr>';
+    r.bracketRows.forEach(function(b){ brow += '<tr><td>' + money(b.from) + ' – ' + money(b.to) + '</td><td>' + Math.round(b.rate*100) + '%</td><td>' + money(b.amount) + '</td></tr>'; });
+    brow += '</table>';
+    var safe = r.safeAnnual !== null
+      ? '<div class="row"><span>Safe-harbor payment (avoids underpayment penalty)</span><strong>' + money(r.safeQuarterly) + ' / quarter</strong></div><p class="hint">Safe harbor for the year: ' + money(r.safeAnnual) + ' (last year\'s tax × ' + (document.getElementById('priorHigh').value === 'yes' ? '110%' : '100%') + ', less withholding, divided by 4). Paying this avoids a penalty even if this year\'s tax is higher, but you may still owe a balance at filing.</p>'
+      : '<p class="hint">Enter last year\'s total tax above to see the safe-harbor payment.</p>';
+    var warn = r.needEstimated ? '' : '<div class="warn">The amount estimated payments must cover is under $1,000, so quarterly payments are generally not required on this estimate. Keep the result for your records in case income rises later in the year.</div>';
+    var balText = r.balance >= 0 ? 'Balance still due after payments already made: ' + money(r.balance) : 'Overpaid on this estimate: ' + money(-r.balance);
+    out.innerHTML = '<p class="small">Your quarterly payment (4 equal payments)</p><div class="big">' + money(r.quarterly) + ' per quarter</div>'
+      + '<div class="row"><span><strong>Total federal tax for the year</strong></span><strong>' + money(r.totalTax) + '</strong></div>'
+      + '<div class="row"><span>Amount estimated payments must cover (after credits and withholding)</span><strong>' + money(r.required) + '</strong></div>'
+      + '<div class="row"><span>' + balText + '</span><strong></strong></div>' + safe + rows + brow
+      + '<p class="hint">Marginal income-tax rate: ' + Math.round(r.marginal*100) + '%. Effective total-tax rate on gross income: ' + r.effective + '%. This assumes income spread evenly through the year — see the limitations above for uneven income.</p>' + warn;
+    out.style.display = 'block';
+    out.setAttribute('data-result', JSON.stringify(r));
+  }
+  document.getElementById('calcBtn').addEventListener('click', function(){ render(computeEstimate(readInputs())); });
+  document.getElementById('exampleBtn').addEventListener('click', function(){
+    document.getElementById('filingStatus').value = 'single';
+    document.getElementById('netSE').value = '80000';
+    document.getElementById('otherIncome').value = '0';
+    document.getElementById('deductionType').value = 'standard';
+    document.getElementById('itemized').value = '0';
+    document.getElementById('qbi').value = '0';
+    document.getElementById('credits').value = '0';
+    document.getElementById('withholding').value = '0';
+    document.getElementById('estPaid').value = '0';
+    document.getElementById('priorTax').value = '';
+    render(computeEstimate(readInputs()));
+  });
+  document.getElementById('exampleHighBtn').addEventListener('click', function(){
+    document.getElementById('filingStatus').value = 'single';
+    document.getElementById('netSE').value = '250000';
+    document.getElementById('otherIncome').value = '0';
+    document.getElementById('deductionType').value = 'standard';
+    document.getElementById('itemized').value = '0';
+    document.getElementById('qbi').value = '0';
+    document.getElementById('credits').value = '0';
+    document.getElementById('withholding').value = '0';
+    document.getElementById('estPaid').value = '0';
+    document.getElementById('priorTax').value = '';
+    render(computeEstimate(readInputs()));
+  });
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var out = document.getElementById('calcResults');
+    if (out.style.display === 'none'){ alert('Calculate first, then copy.'); return; }
+    var t = out.innerText || out.textContent;
+    if (navigator.clipboard) navigator.clipboard.writeText(t);
+  });
+  document.getElementById('shareBtn').addEventListener('click', function(){
+    var i = readInputs(), q = new URLSearchParams();
+    Object.keys(i).forEach(function(k){ q.set(k, i[k]); });
+    var url = window.location.href.split('?')[0] + '?' + q.toString();
+    if (navigator.clipboard) navigator.clipboard.writeText(url);
+    alert('Share link copied: ' + url);
+  });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  (function(){
+    var q = new URLSearchParams(window.location.search);
+    if (!q.get('netSE')) return;
+    var map = {filingStatus:'filingStatus', netSE:'netSE', otherIncome:'otherIncome', deductionType:'deductionType', itemized:'itemized', qbi:'qbi', credits:'credits', withholding:'withholding', estPaid:'estPaid', priorTax:'priorTax'};
+    Object.keys(map).forEach(function(k){ if (q.get(k) !== null) document.getElementById(map[k]).value = q.get(k); });
+    if (q.get('priorHigh') !== null) document.getElementById('priorHigh').value = q.get('priorHigh') === 'true' ? 'yes' : 'no';
+    render(computeEstimate(readInputs()));
+  })();
+}
+</script>
+</body>
+</html>

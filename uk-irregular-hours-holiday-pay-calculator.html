@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="apple-touch-icon" href="favicon.jpg">
+<title>UK Irregular-Hours Holiday Pay Calculator (12.07% + Rolled-Up) — WageWise</title>
+<meta name="description" content="Free UK holiday pay calculator for irregular-hours and part-year workers. Accrue holiday at 12.07% of hours worked, check a rolled-up holiday pay line on your payslip, or work out pay for leave taken using a 52-week average. No signup, all calculations run in your browser.">
+<meta name="robots" content="index, follow">
+<style>
+:root{--navy:#0b1b3a;--accent:#1a63f0;--accent-d:#1250c9;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--bg:#f3f6fb;--soft:#eef4ff;--sh:0 1px 2px rgba(15,23,42,.06),0 10px 30px rgba(15,23,42,.07)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}[hidden]{display:none!important}
+body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:#1250c9;text-underline-offset:2px}a:hover{color:#0b3a9a}
+:focus-visible{outline:3px solid #3b82f6;outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:8px 14px;border-radius:8px;z-index:100}.skip:focus{left:8px}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+header.site{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 20px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:18px}.brand:hover{color:#fff}
+.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#4d8dff,#1a63f0);font-size:14px;letter-spacing:-.5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+header nav{display:flex;flex-wrap:wrap;gap:2px 4px}
+header nav a{color:#d3e0f8;text-decoration:none;font-size:15px;padding:8px 12px;border-radius:8px}
+header nav a:hover,header nav a[aria-current=page]{background:rgba(255,255,255,.13);color:#fff}
+header a:focus-visible,footer a:focus-visible,.hero a:focus-visible,.pagehead a:focus-visible{outline-color:#93c5fd}
+main.wrap{padding-top:24px;padding-bottom:16px}
+.ad-slot{display:flex;flex-direction:column;align-items:center;margin:0;padding:0;border:0;background:none;min-height:0;overflow:hidden}
+.ad-slot>*{margin:20px auto;max-width:100%}
+.show-slots .ad-slot{min-height:110px;margin:0 0 28px;border:2px dashed #94a3b8;border-radius:14px;background:#f8fafc}
+.show-slots .ad-slot::before{content:"AD SLOT: " attr(id) " (" attr(data-ad-slot) ") - paste Adsterra code inside this div";color:#475569;font-size:14px;font-weight:700;text-align:center;padding:42px 14px}
+.show-slots .ad-slot>*{margin:12px auto}
+h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
+.coffee{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:#fff;border-radius:18px;box-shadow:var(--sh);padding:22px 28px;margin:0 0 28px}
+.coffee p{margin:0;font-weight:600}
+.coffee-btn{display:inline-block;background:#ffdd00;color:#0f172a;font-weight:800;font-size:17px;padding:13px 24px;border-radius:12px;text-decoration:none;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
+.coffee-btn:hover{background:#f5cf00;color:#0f172a}
+.card{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:32px;margin:0 0 28px}
+.card h2{font-size:26px;margin:0 0 18px}.card h3{font-size:19px;margin:0 0 10px}
+.small,.hint{font-size:14px;color:var(--muted)}.hint{margin:8px 0 0}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b1b3a 0%,#13357a 62%,#1a63f0 135%);color:#fff;border-radius:24px;padding:56px 40px;margin:8px 0 28px;box-shadow:var(--sh)}
+.hero::after{content:"";position:absolute;right:-90px;top:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.4),transparent 70%)}
+.hero>*{position:relative;z-index:1;max-width:720px}
+.hero h1{font-size:clamp(34px,5.5vw,56px);line-height:1.08;margin:0 0 16px;letter-spacing:-.025em}
+.hero .lead{font-size:clamp(17px,2.2vw,21px);color:#dbe7ff;margin:0 0 12px}
+.hero .trust{font-size:15px;color:#b9cbec;margin:0 0 28px}
+.cta{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:18px;padding:15px 28px;border-radius:12px;text-decoration:none;box-shadow:0 0 0 3px rgba(255,255,255,.22),0 8px 20px rgba(26,99,240,.35)}
+.cta:hover{background:var(--accent-d);color:#fff}
+.pagehead{background:linear-gradient(135deg,#0b1b3a,#13357a);color:#fff;border-radius:20px;padding:34px 36px;margin:8px 0 28px;box-shadow:var(--sh)}
+.pagehead h1{margin:0 0 12px;font-size:clamp(28px,4.2vw,42px);line-height:1.12}
+.pagehead p{margin:0 0 8px;color:#dbe7ff}.pagehead p:last-child{margin-bottom:0}.pagehead .small{color:#b9cbec}.pagehead a{color:#fff}
+.tool{display:grid;grid-template-columns:1fr auto;gap:14px 32px;align-items:center;background:var(--soft);border:1px solid #cfe0ff;border-radius:16px;padding:26px}
+.tool h3{margin:0 0 8px;font-size:22px}.tool p{margin:0 0 8px}.tool p:last-child{margin:0}
+.coming{margin:18px 0 0;font-size:14px;color:var(--muted)}
+.features{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.features li{padding:20px;border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;background:#fbfdff}
+.features strong{display:block;font-size:17px;margin-bottom:6px}
+.prose h2{font-size:22px;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}.prose h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.prose p{margin:0 0 14px}
+.notice{background:#fff8e1;border:1px solid #f1d98a;border-radius:12px;padding:14px 18px;margin:0 0 28px;color:#5b4300}
+.placeholder{background:#fff3bf;color:#7a4b00;padding:2px 8px;border-radius:6px;font-weight:700}
+label{display:block;font-weight:600;margin:20px 0 8px}
+input,select{width:100%;min-height:54px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font:inherit;font-size:18px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:3px solid rgba(59,130,246,.35);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.days-set{border:1.5px solid var(--line);border-radius:16px;padding:18px 20px 22px;margin:26px 0 0;min-width:0}
+.days-set legend{padding:0 8px}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.days label{margin-top:8px;font-size:15px;text-align:center}.days input{padding:12px 6px;text-align:center}
+button{font:inherit;font-weight:700;font-size:17px;min-height:50px;padding:12px 24px;border:0;border-radius:12px;background:var(--accent);color:#fff;cursor:pointer}
+button:hover{background:var(--accent-d)}button.secondary{background:#e6efff;color:#0f2a5c}button.secondary:hover{background:#d3e2ff}
+button.sm{min-height:38px;padding:6px 14px;font-size:15px;margin-left:6px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.error{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:12px;padding:14px 18px;margin-top:20px;font-weight:600}
+.results{margin-top:30px;background:linear-gradient(180deg,#eaf2ff,#f8fbff);border:1px solid #cfe0ff;border-radius:20px;padding:28px}
+.results h2{font-size:18px;color:var(--muted);margin:0}
+.big{font-size:clamp(28px,5vw,42px);font-weight:800;color:var(--navy);margin:6px 0 8px;letter-spacing:-.02em;line-height:1.15}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}
+.row{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.row span{font-size:14px;color:var(--muted)}.row strong{font-size:18px;overflow-wrap:anywhere}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0 14px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);font-size:15px}
+th{background:#f1f5f9;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}tr:last-child td{border-bottom:0}
+.steps p{margin:0 0 12px;padding:16px 20px;background:#f5f9ff;border-left:4px solid var(--accent);border-radius:0 12px 12px 0}.steps p:last-of-type{margin-bottom:0}
+.ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ex{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:24px}.ex p:last-child{margin-bottom:0}
+.card ul:not(.features){padding-left:22px}.card li{margin-bottom:8px}
+.sources{border-left:5px solid var(--accent)}.sources p{margin:0;overflow-wrap:anywhere}
+details{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;background:#fff}
+details[open]{border-color:#bcd2ff;background:#fbfdff}
+summary{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:24px;line-height:1;color:var(--accent);flex:none}
+details[open] summary::after{content:"\2013"}
+details p{margin:0;padding:0 20px 18px;color:#334155}
+textarea{width:100%;min-height:120px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font:inherit;font-size:18px;background:#fff;color:var(--ink);resize:vertical}
+textarea:focus{outline:3px solid rgba(59,130,246,.35);border-color:var(--accent)}
+.warn{background:#fffbeb;border:1px solid #fde68a;color:#78350f;border-radius:14px;padding:16px 20px;margin:0 0 28px}
+#accrualWarn.warn{margin:20px 0 0;border-radius:12px;padding:14px 18px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+button.tab{background:#e6efff;color:#0f2a5c}button.tab:hover{background:#d3e2ff}
+button.tab[aria-selected="true"]{background:var(--navy);color:#fff}
+.tool+.tool{margin-top:16px}
+@media(max-width:640px){.tabs button{flex:1 1 100%}}
+#calcResults>.row{flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:10px 0}
+#calcResults>.row span{font-size:16px;color:var(--ink)}#calcResults>.row strong{text-align:right}
+#calcResults>.small{margin:0}#calcResults .warn{margin:16px 0 0}#calcResults table{margin-top:16px;background:#fff}
+.ex-grid.x3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){.ex-grid.x3{grid-template-columns:1fr}}
+code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
+footer.site{background:var(--navy);color:#b9cbec;margin-top:24px;padding:34px 0 44px;font-size:14px}
+footer.site p{margin:0 0 8px}footer.site a{color:#fff}
+@media(max-width:900px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.metrics,.ex-grid,.tool{grid-template-columns:1fr}.days{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
+@media(max-width:640px){.coffee{padding:20px 18px}.coffee-btn{display:block;width:100%;text-align:center}.wrap{padding:0 16px}.grid{grid-template-columns:1fr}.card{padding:22px 18px;border-radius:16px}.card h2{font-size:23px}.hero{padding:36px 22px;border-radius:20px}.pagehead{padding:26px 22px}.features{grid-template-columns:1fr}header nav a{font-size:14px;padding:6px 10px}.results{padding:20px 16px}.days-set{padding:14px 12px 18px}th,td{padding:8px 6px;font-size:14px}.cta{display:block;text-align:center}.actions button{flex:1 1 auto}}
+@media print{.coffee,.ad-slot,button,header.site,.skip,.actions{display:none!important}body{background:#fff}.card,.results,.hero,.pagehead{box-shadow:none}footer.site{background:#fff;color:#333}footer.site a{color:#000}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"UK Irregular-Hours Holiday Pay Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},"description":"Calculates holiday accrual at 12.07% of hours worked, checks rolled-up holiday pay on a payslip, and works out pay for leave taken using a 52-week average."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Who can use the 12.07% accrual method?","acceptedAnswer":{"@type":"Answer","text":"In Great Britain, irregular-hours workers (paid hours wholly or mostly variable in each pay period) and part-year workers, for leave years beginning on or after 1 April 2024. It does not apply to workers with regular fixed hours, and the 2024 reforms do not apply in Northern Ireland."}},
+{"@type":"Question","name":"What is rolled-up holiday pay?","acceptedAnswer":{"@type":"Answer","text":"Holiday pay paid with every payslip instead of when leave is taken, at 12.07% of total pay for the period. For irregular-hours and part-year workers in Great Britain it is lawful for leave years beginning on or after 1 April 2024, and it must be shown as a separate, clearly labelled line on the payslip."}},
+{"@type":"Question","name":"Does the 5.6 weeks include bank holidays?","acceptedAnswer":{"@type":"Answer","text":"The statutory minimum of 5.6 weeks can include bank and public holidays unless the contract says more. An employer can require some of the statutory leave to be taken on bank holidays if the contract allows it. Check the contract for anything above the statutory minimum."}},
+{"@type":"Question","name":"What if my leave year started before 1 April 2024?","acceptedAnswer":{"@type":"Answer","text":"The 12.07% accrual method and lawful rolled-up holiday pay apply from the start of the first leave year beginning on or after 1 April 2024. Before that renewal, the previous rules applied. If you are unsure when your leave year starts, check your contract or ask your employer."}},
+{"@type":"Question","name":"Why is rounding done for each pay period, not on the total?","acceptedAnswer":{"@type":"Answer","text":"Entitlement accrues per pay period at 12.07% of the hours worked in that period, rounded to the nearest hour (up if 0.5 or more). Rounding each period separately can give a different total from rounding once at the end, for example 30 hours plus 15 hours accrues 4 plus 2, which is 6 hours, not 5."}},
+{"@type":"Question","name":"Is this calculator legal advice?","acceptedAnswer":{"@type":"Answer","text":"No. This is an estimate only for planning, based on the statutory minimum in Great Britain. A contract may give more. For a dispute, contact Acas or Citizens Advice, and seek professional advice."}}
+]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap bar"><a class="brand" href="index.html"><span class="logo" aria-hidden="true">W</span><span>WageWise</span></a><nav aria-label="Main"><a href="shift-differential-overtime-calculator.html">Shift &amp; Overtime Calculator</a><a href="uk-irregular-hours-holiday-pay-calculator.html" aria-current="page">UK Holiday Pay Calculator</a><a href="us-1099-quarterly-estimated-tax-calculator.html">US 1099 Tax Calculator</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></nav></div></header>
+<main class="wrap" id="main">
+<!-- ===== ADSTERRA AD SLOT 1: TOP BANNER ===== -->
+<!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-1" data-ad-slot="top-banner">
+  
+</div>
+
+<section class="pagehead"><h1>UK Holiday Pay Calculator for Irregular Hours</h1>
+<p><strong>For zero-hours, casual and part-year workers in Great Britain.</strong> Work out holiday accrued at 12.07% of hours worked, check the rolled-up holiday pay line on a payslip, or work out pay for leave taken from a 52-week average. All maths runs in your browser. Nothing you type is uploaded or stored.</p>
+<p class="small">Estimate only, based on the statutory minimum. Not legal, tax or payroll advice. See the <a href="disclaimer.html">disclaimer</a>.</p></section>
+
+<div class="warn"><strong>Check this first.</strong> This calculator uses the Great Britain rules for leave years beginning on or after 1 April 2024: irregular-hours and part-year workers accrue 12.07% of hours worked in each pay period. It is <strong>not</strong> for workers with regular fixed hours, and the 2024 reforms do not apply in Northern Ireland. If either applies to you, the result below is not your statutory method — check your contract and GOV.UK / nidirect guidance.</div>
+
+<section class="card" aria-labelledby="calc-heading">
+<h2 id="calc-heading">Calculate your holiday pay</h2>
+
+<div class="tabs" role="tablist" aria-label="Calculator modes">
+<button type="button" class="tab" id="tab-accrual" aria-selected="true">1. Accrue holiday (12.07%)</button>
+<button type="button" class="tab" id="tab-payslip" aria-selected="false">2. Payslip check (rolled-up)</button>
+<button type="button" class="tab" id="tab-average" aria-selected="false">3. Pay for leave (52-week average)</button>
+</div>
+
+<!-- ============ TAB A: ACCRUAL ============ -->
+<div id="panel-accrual">
+<label for="leaveYear">When did your current leave year begin?</label>
+<select id="leaveYear">
+<option value="after" selected>On or after 1 April 2024 — 12.07% method applies</option>
+<option value="before">Before 1 April 2024 — ask your employer; the old rules may still apply until your leave year renews</option>
+</select>
+<label for="jurisdiction">Where do you work?</label>
+<select id="jurisdiction">
+<option value="gb" selected>Great Britain (England, Scotland or Wales)</option>
+<option value="ni">Northern Ireland — the 2024 GB reforms do not apply; this result is a GB estimate only</option>
+</select>
+<label for="payPeriod">How often are you paid? (your pay period)</label>
+<select id="payPeriod">
+<option value="weekly" selected>Weekly</option>
+<option value="fortnightly">Fortnightly</option>
+<option value="four-weekly">Four-weekly</option>
+<option value="monthly">Monthly</option>
+</select>
+<p class="hint">Accrual is calculated separately for each pay period, then added up. Rounding happens per period, not once at the end.</p>
+
+<label for="hoursList">Hours worked in each pay period — one number per line</label>
+<textarea id="hoursList">68</textarea>
+<p class="hint">Example: 30 on one line and 15 on the next means two weekly pay periods. Use decimals for minutes, e.g. 7.5. Do not include hours already counted as holiday.</p>
+
+<div class="grid">
+<div>
+<label for="hourlyRate">Hourly rate (£)</label>
+<input id="hourlyRate" type="number" min="0" step="0.01" inputmode="decimal" value="13" placeholder="e.g. 13">
+</div>
+<div>
+<label for="dayLength">Average working day (hours, optional)</label>
+<input id="dayLength" type="number" min="0" step="0.25" inputmode="decimal" placeholder="e.g. 8">
+<p class="hint">Only needed to show accrued leave in days.</p>
+</div>
+</div>
+<div class="grid">
+<div>
+<label for="takenHours">Holiday hours already taken (hours only)</label>
+<input id="takenHours" type="number" min="0" step="0.25" inputmode="decimal" value="0" placeholder="e.g. 0">
+</div>
+<div>
+<label for="totalPay">Total pay for all periods above (£, optional)</label>
+<input id="totalPay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 884">
+<p class="hint">Only needed for the rolled-up amount. This is pay before the holiday element is added.</p>
+</div>
+</div>
+
+<div id="accrualWarn" class="warn" hidden></div>
+<div id="accrualError" class="error" hidden></div>
+<div class="actions"><button type="button" id="accrualBtn">Calculate holiday accrued</button>
+<button type="button" class="secondary" id="accrualExampleBtn">Fill GOV.UK example (68 hours)</button>
+<button type="button" class="secondary" id="accrualMultiBtn">Fill two-period example (30 + 15 hours)</button></div>
+
+<div id="accrualResults" class="results" aria-live="polite" hidden>
+<h2>Your accrued holiday</h2>
+<div class="big" id="accruedOut">—</div>
+<p class="small" id="accrualSummary"></p>
+<div class="metrics"><div class="row"><span>Total hours worked</span><strong id="totalHoursOut">—</strong></div>
+<div class="row"><span>Exact accrual (12.07% of hours, before rounding)</span><strong id="exactOut">—</strong></div>
+<div class="row"><span>Rounded accrual (nearest hour per period)</span><strong id="roundedOut">—</strong></div>
+<div class="row"><span>Value of accrued holiday at your hourly rate</span><strong id="accruedValueOut">—</strong></div>
+<div class="row"><span>Accrued holiday in days</span><strong id="accruedDaysOut">—</strong></div>
+<div class="row"><span>Holiday already taken</span><strong id="takenOut">—</strong></div>
+<div class="row"><span>Holiday remaining</span><strong id="remainingOut">—</strong></div>
+<div class="row"><span>Rolled-up holiday pay (12.07% of total pay)</span><strong id="rolledOut">—</strong></div>
+<div class="row"><span>Hourly rate including rolled-up element</span><strong id="rolledRateOut">—</strong></div>
+</div><h3>Period-by-period breakdown</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Pay period</th><th>Hours worked</th><th>Exact accrual</th><th>Rounded accrual</th></tr></thead>
+<tbody id="periodTable"></tbody>
+</table></div>
+<p class="small" id="accrualNote"></p>
+<div class="actions"><button type="button" class="secondary" id="accrualCopyBtn">Copy result</button>
+<button type="button" class="secondary" id="accrualShareBtn">Copy share link</button>
+<button type="button" class="secondary" onclick="window.print()">Print result</button></div>
+</div>
+</div>
+
+<!-- ============ TAB B: PAYSLIP CHECK ============ -->
+<div id="panel-payslip" hidden>
+<p>Rolled-up holiday pay must be at least 12.07% of total pay for the period, paid at the same time as wages, and shown as a separate, clearly labelled line on the payslip. It must not be hidden inside a higher hourly rate.</p>
+<label for="slipTotalPay">Total pay for the period (£, before the holiday element)</label>
+<input id="slipTotalPay" type="number" min="0" step="0.01" inputmode="decimal" value="1000" placeholder="e.g. 1000">
+<label for="slipHolidayPay">Holiday pay shown on the payslip (£)</label>
+<input id="slipHolidayPay" type="number" min="0" step="0.01" inputmode="decimal" value="120.70" placeholder="e.g. 120.70">
+<label for="slipSeparate">Is the holiday pay shown as a separate line on the payslip?</label>
+<select id="slipSeparate">
+<option value="yes" selected>Yes — separate, labelled line</option>
+<option value="no">No — included in the hourly rate or not shown separately</option>
+<option value="unsure">Not sure</option>
+</select>
+<div id="payslipError" class="error" hidden></div>
+<div class="actions"><button type="button" id="payslipBtn">Check my payslip</button>
+<button type="button" class="secondary" id="payslipExampleBtn">Fill correct example (£1,000 / £120.70)</button>
+<button type="button" class="secondary" id="payslipShortBtn">Fill short example (£800 / £80)</button></div>
+<div id="payslipResults" class="results" aria-live="polite" hidden>
+<h2>Payslip check</h2>
+<div class="big" id="payslipVerdict">—</div>
+<div class="metrics"><div class="row"><span>Expected rolled-up holiday pay (12.07%)</span><strong id="expectedOut">—</strong></div>
+<div class="row"><span>Shown on payslip</span><strong id="shownOut">—</strong></div>
+<div class="row"><span>Difference</span><strong id="slipDiffOut">—</strong></div>
+<div class="row"><span>Rate actually paid</span><strong id="slipRateOut">—</strong></div>
+</div><p class="small" id="payslipNote"></p>
+</div>
+</div>
+
+<!-- ============ TAB C: 52-WEEK AVERAGE ============ -->
+<div id="panel-average" hidden>
+<p>When leave is taken (and rolled-up pay is not used), holiday pay for variable pay is normally based on average earnings over the previous 52 <em>paid</em> weeks. Weeks with no pay are ignored and the count goes further back, up to 104 weeks. Enter only weeks in which you were paid.</p>
+<label for="weeklyPays">Weekly pay (£) — one paid week per line, most recent 52 paid weeks</label>
+<textarea id="weeklyPays">320
+360
+280
+400</textarea>
+<p class="hint">Include commission, regular overtime and other payments that count towards normal holiday pay. If your pay includes amounts that do not count, use the pay figure your employer uses for holiday pay and check with payroll.</p>
+<div class="grid">
+<div>
+<label for="avgHoursWeek">Average hours worked per week</label>
+<input id="avgHoursWeek" type="number" min="0" step="0.25" inputmode="decimal" value="34" placeholder="e.g. 34">
+</div>
+<div>
+<label for="leaveHours">Hours of leave you want to take</label>
+<input id="leaveHours" type="number" min="0" step="0.25" inputmode="decimal" value="16" placeholder="e.g. 16">
+</div>
+</div>
+<div id="averageError" class="error" hidden></div>
+<div class="actions"><button type="button" id="averageBtn">Calculate pay for this leave</button>
+<button type="button" class="secondary" id="averageExampleBtn">Fill example (4 weeks)</button></div>
+<div id="averageResults" class="results" aria-live="polite" hidden>
+<h2>Pay for this leave</h2>
+<div class="big" id="leavePayOut">—</div>
+<div class="metrics"><div class="row"><span>Paid weeks entered</span><strong id="weeksOut">—</strong></div>
+<div class="row"><span>Total pay in those weeks</span><strong id="avgTotalOut">—</strong></div>
+<div class="row"><span>Average weekly pay</span><strong id="avgWeeklyOut">—</strong></div>
+<div class="row"><span>Implied hourly rate (average weekly pay ÷ average hours)</span><strong id="avgHourlyOut">—</strong></div>
+</div><p class="small" id="averageNote"></p>
+</div>
+</div>
+</section>
+
+<!-- ===== ADSTERRA AD SLOT 2: IN-CONTENT BANNER ===== -->
+<!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-2" data-ad-slot="in-content-banner">
+  <script async="async" data-cfasync="false" src="https://bauval.org/21/7c40d392fadb47e47e891b7e176e9310"></script>
+  <div id="container-7c40d392fadb47e47e891b7e176e9310"></div>
+</div>
+
+<section class="card steps">
+<h2>How the maths works</h2>
+<p><strong>Why 12.07%?</strong> Statutory holiday is 5.6 weeks a year. A year has 52 weeks, so 52 − 5.6 = 46.4 working weeks. 5.6 ÷ 46.4 = 0.1207, or 12.07%.</p>
+<p><strong>Step 1 — Accrual per pay period.</strong> Hours worked in the pay period × 12.07%. Round to the nearest hour, up if the fraction is 0.5 or more. Do this for each pay period separately, then add the rounded figures.</p>
+<p><strong>Step 2 — Value of accrued holiday.</strong> Rounded accrued hours × hourly rate. This is the value of the time off when it is taken, before any rolled-up payment is taken into account.</p>
+<p><strong>Step 3 — Rolled-up holiday pay.</strong> Total pay for the period × 12.07%. Rolled-up pay is paid instead of paying for leave when it is taken, not as well as it. If you are paid rolled-up holiday pay, do not add the Step 2 value on top of it for the same leave, or you will double-count.</p>
+<p><strong>Step 4 — 52-week average (leave taken, no rolled-up pay).</strong> Add the pay for the previous 52 paid weeks and divide by 52 (or by the number of paid weeks entered, if fewer). That average weekly pay is the pay for a week of leave. Divide it by average hours per week to get an implied hourly rate for leave taken in hours.</p></section>
+
+<section class="card">
+<h2>Worked examples</h2>
+<div class="ex-grid"><article class="ex"><h3>Worked example 1 — GOV.UK accrual example</h3>
+<p>Jill works irregular hours and is paid monthly. In June she works 68 hours. Accrual = 68 × 12.07% = 8.2076 hours, rounded to <strong>8 hours</strong>. At £13 an hour, those 8 hours are worth <strong>£104.00</strong> when taken. If her total pay for June was £884, rolled-up holiday pay would be £884 × 12.07% = <strong>£106.70</strong>.</p>
+
+</article><article class="ex"><h3>Worked example 2 — Weekly, 30 hours</h3>
+<p>30 hours in a weekly pay period: 30 × 12.07% = 3.621 hours, rounded to <strong>4 hours</strong>. At £12.50 an hour, that is <strong>£50.00</strong>. The leave can be taken from the next pay period.</p>
+
+</article><article class="ex"><h3>Worked example 3 — Why per-period rounding matters</h3>
+<p>Two weekly periods of 30 hours and 15 hours accrue 4 hours and 2 hours — <strong>6 hours in total</strong>. Rounding once on the combined 45 hours would give 5 hours. Always round each pay period separately.</p>
+
+</article><article class="ex"><h3>Worked example 4 — Rolled-up payslip check</h3>
+<p>Total pay £800 in the period, payslip shows £80. Expected rolled-up holiday pay = £800 × 12.07% = <strong>£96.56</strong>, so the worker is <strong>£16.56 short</strong>. Ask payroll to show the calculation.</p>
+
+</article></div>
+</section>
+
+<section class="card">
+<h2>What this calculator does not do</h2>
+<ul>
+<li>It does not handle workers with regular fixed hours, who use pro-rating (days worked × 5.6, capped at 28 days), not the 12.07% method.</li>
+<li>It does not handle Northern Ireland, where the 2024 Great Britain reforms do not apply.</li>
+<li>It does not decide which payments count towards “normal” holiday pay in a disputed case — commission, regular overtime, and status payments can all matter. Keep payslips and ask payroll what was included.</li>
+<li>It does not handle contractual holiday above the statutory minimum, carry-over rules, sickness or family leave, or pay on leaving where the contract has its own formula. A contract that gives more than the statutory minimum wins.</li>
+<li>It does not deduct tax, National Insurance, pension, or student-loan deductions. Holiday pay shown here is gross.</li>
+<li>Bank holidays are not listed by date here. The statutory 5.6 weeks can include bank holidays unless the contract says more; the number of bank holidays differs by nation (England and Wales 8, Scotland 9, Northern Ireland 10 in a typical year). Check GOV.UK bank-holiday dates for the year in question.</li>
+</ul>
+</section>
+
+<section class="card sources">
+<p class="small">Sources checked 27 October 2026: GOV.UK, Holiday entitlement — calculating leave entitlement for irregular-hours or part-year workers (12.07%, rounding to the nearest hour, 30-hour example): <a href="https://www.gov.uk/holiday-entitlement-rights/calculate-leave-entitlement">gov.uk/holiday-entitlement-rights/calculate-leave-entitlement</a>. GOV.UK, Holiday pay and entitlement reforms from 1 January 2024 (leave years from 1 April 2024, rolled-up pay, 52-week reference period): <a href="https://www.gov.uk/government/publications/simplifying-holiday-entitlement-and-holiday-pay-calculations/holiday-pay-and-entitlement-reforms-from-1-january-2024">gov.uk — holiday pay and entitlement reforms</a>. Always check the primary source and your contract for your situation.</p>
+</section>
+
+<section class="card">
+<h2>Frequently asked questions</h2>
+<details><summary>Who can use the 12.07% method?</summary><p>In Great Britain, irregular-hours workers — where paid hours are wholly or mostly variable in each pay period — and part-year workers, for leave years beginning on or after 1 April 2024. Workers with regular fixed hours use pro-rating instead. The 2024 reforms do not apply in Northern Ireland.</p></details>
+<details><summary>What is rolled-up holiday pay, and is it legal?</summary><p>Holiday pay paid with every payslip at 12.07% of total pay, instead of when leave is taken. For irregular-hours and part-year workers in Great Britain it is lawful for leave years beginning on or after 1 April 2024. It must be at least 12.07%, paid at the same time as wages, and shown as a separate, clearly labelled line on the payslip. It must not be hidden inside a higher hourly rate.</p></details>
+<details><summary>Does 5.6 weeks include bank holidays?</summary><p>The statutory minimum can include bank and public holidays unless the contract gives more. An employer can require statutory leave to be taken on bank holidays if the contract allows it. If your contract gives more than 5.6 weeks, the extra days are contractual — check how they are treated.</p></details>
+<details><summary>What if my leave year started before 1 April 2024?</summary><p>The new accrual method and lawful rolled-up pay apply from the first leave year beginning on or after 1 April 2024. Until your leave year renews, the previous rules applied. If you are unsure when your leave year starts, check your contract or ask your employer — do not assume it is the calendar year.</p></details>
+<details><summary>Why round each pay period separately?</summary><p>Because entitlement accrues per pay period. Rounding each period to the nearest hour and then adding them can give a different, usually slightly higher, total than rounding once at the end. The 30-hour plus 15-hour example in the worked examples shows 6 hours, not 5.</p></details>
+<details><summary>My payslip does not show a separate holiday line. What should I do?</summary><p>Ask payroll for a breakdown showing the holiday element separately. Keep your hours records and payslips. If the amount is short or the line is missing, and payroll cannot explain it, contact Acas or Citizens Advice. Do not rely on a verbal assurance — ask for the calculation in writing.</p></details>
+</section>
+
+<!-- ===== ADSTERRA AD SLOT 3: BOTTOM BANNER ===== -->
+<!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-3" data-ad-slot="bottom-banner">
+ 
+</div>
+
+<p class="small">Last verified: 27 October 2026. The rules in this tool are the Great Britain statutory rules described above. They do not update automatically — re-check GOV.UK if you use this page after a law change. <a href="disclaimer.html">Full disclaimer</a>.</p>
+
+</main>
+<footer class="site"><div class="wrap"><p>WageWise — free pay calculators. <a href="index.html">All tools</a> · <a href="about.html">About</a> · <a href="privacy-policy.html">Privacy Policy</a> · <a href="disclaimer.html">Disclaimer</a></p>
+<p>All calculations run in your browser. This site does not collect pay data you enter.</p></div></footer>
+<script>
+var RATE=0.1207;
+function $(id){return document.getElementById(id)}
+function money(n){return "\u00A3"+n.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fmt(n){return (Math.round(n*100)/100).toString()}
+function parseList(text){
+  var lines=text.split(/\r?\n/),vals=[],errors=[];
+  lines.forEach(function(line,i){
+    var t=line.trim();if(t==="")return;
+    var n=parseFloat(t.replace(/,/g,"").replace(/^\u00A3/,""));
+    if(!isFinite(n)||n<0){errors.push("Line "+(i+1)+": '"+t+"' is not a valid non-negative number.")}
+    else{vals.push(n)}
+  });
+  return {vals:vals,errors:errors};
+}
+function showTab(name){
+  ["accrual","payslip","average"].forEach(function(n){
+    $("panel-"+n).hidden=(n!==name);
+    $("tab-"+n).setAttribute("aria-selected",n===name?"true":"false");
+  });
+}
+$("tab-accrual").addEventListener("click",function(){showTab("accrual")});
+$("tab-payslip").addEventListener("click",function(){showTab("payslip")});
+$("tab-average").addEventListener("click",function(){showTab("average")});
+
+function accrualWarnings(){
+  var warn=$("accrualWarn");warn.hidden=true;warn.textContent="";
+  var msgs=[];
+  if($("leaveYear").value==="before")msgs.push("Your leave year began before 1 April 2024: the 12.07% method and lawful rolled-up pay apply from your next leave year. This result may not be your statutory method for this year.");
+  if($("jurisdiction").value==="ni")msgs.push("Northern Ireland: the 2024 Great Britain reforms do not apply. Treat this as a GB estimate only and check nidirect / your contract.");
+  if(msgs.length){warn.textContent=msgs.join(" ");warn.hidden=false}
+}
+function calculateAccrual(){
+  var err=$("accrualError"),res=$("accrualResults");err.hidden=true;err.textContent="";
+  accrualWarnings();
+  var parsed=parseList($("hoursList").value),errors=parsed.errors.slice();
+  var rate=parseFloat($("hourlyRate").value),dayLen=parseFloat($("dayLength").value),
+      taken=parseFloat($("takenHours").value),totalPay=parseFloat($("totalPay").value);
+  if(!isFinite(rate)||rate<=0)errors.push("Enter an hourly rate greater than 0.");
+  if(!isFinite(taken)||taken<0)errors.push("Holiday already taken cannot be negative.");
+  if($("dayLength").value!==""&&(!isFinite(dayLen)||dayLen<=0))errors.push("Average working day must be greater than 0, or leave it blank.");
+  if($("totalPay").value!==""&&(!isFinite(totalPay)||totalPay<0))errors.push("Total pay cannot be negative.");
+  parsed.vals.forEach(function(h,i){if(h>168)errors.push("Period "+(i+1)+": hours ("+fmt(h)+") look too high for one pay period — check the number.")});
+  if(!parsed.vals.length)errors.push("Enter at least one period of hours worked.");
+  if(errors.length){err.textContent=errors.join(" ");err.hidden=false;res.hidden=true;return}
+  var exactTotal=0,roundedTotal=0,rows=[];
+  parsed.vals.forEach(function(h,i){
+    var exact=h*RATE,rounded=Math.round(exact);
+    exactTotal+=exact;roundedTotal+=rounded;
+    rows.push([i+1,h,exact,rounded]);
+  });
+  var value=roundedTotal*rate;
+  var remaining=Math.max(roundedTotal-taken,0);
+  var daysOut="—";
+  if(isFinite(dayLen)&&dayLen>0)daysOut=fmt(roundedTotal/dayLen)+" days (at "+fmt(dayLen)+" hours per day)";
+  var rolled=null,rolledRate=null;
+  if(isFinite(totalPay)){rolled=totalPay*RATE;rolledRate=rate+rate*RATE}
+  $("accruedOut").textContent="Holiday accrued: "+roundedTotal+" hours";
+  $("accrualSummary").textContent=parsed.vals.length+" pay period(s), "+$("payPeriod").value+". Exact accrual "+fmt(exactTotal)+" hours, rounded per period to "+roundedTotal+" hours.";
+  $("totalHoursOut").textContent=fmt(parsed.vals.reduce(function(a,b){return a+b},0))+" hours";
+  $("exactOut").textContent=fmt(exactTotal)+" hours";
+  $("roundedOut").textContent=roundedTotal+" hours";
+  $("accruedValueOut").textContent=money(value);
+  $("accruedDaysOut").textContent=daysOut;
+  $("takenOut").textContent=fmt(taken)+" hours ("+money(taken*rate)+")";
+  $("remainingOut").textContent=remaining+" hours ("+money(remaining*rate)+")";
+  $("rolledOut").textContent=rolled===null?"Not entered — add total pay to see this.":money(rolled);
+  $("rolledRateOut").textContent=rolledRate===null?"—":money(rolledRate)+"/hour (hourly rate + 12.07%)";
+  $("periodTable").innerHTML=rows.map(function(r){
+    return "<tr><td>"+r[0]+"</td><td>"+fmt(r[1])+"</td><td>"+fmt(r[2])+"</td><td>"+r[3]+"</td></tr>"
+  }).join("");
+  $("accrualNote").textContent="Method: 12.07% = 5.6 \u00F7 46.4. Each period is rounded to the nearest hour (up if 0.5 or more) before adding. Rolled-up pay and pay for leave taken are alternatives for the same leave — do not add both for the same hours.";
+  res.hidden=false;
+  try{var p=new URLSearchParams({tab:"accrual",hours:parsed.vals.join(","),rate:rate,day:$("dayLength").value||"",taken:taken,pay:$("totalPay").value||"",period:$("payPeriod").value});history.replaceState(null,"","?"+p.toString())}catch(e){}
+}
+function calculatePayslip(){
+  var err=$("payslipError"),res=$("payslipResults");err.hidden=true;err.textContent="";
+  var total=parseFloat($("slipTotalPay").value),shown=parseFloat($("slipHolidayPay").value),errors=[];
+  if(!isFinite(total)||total<0)errors.push("Enter total pay of 0 or more.");
+  if(!isFinite(shown)||shown<0)errors.push("Enter the holiday pay shown of 0 or more.");
+  if(errors.length){err.textContent=errors.join(" ");err.hidden=false;res.hidden=true;return}
+  var expected=total*RATE,diff=shown-expected,actualRate=total>0?shown/total*100:0;
+  var verdict=diff<-0.005?"Short by "+money(-diff):(diff>0.005?"Paid "+money(diff)+" more than the minimum":"Correct — matches the 12.07% minimum");
+  if($("slipSeparate").value==="no")verdict+=" — but the separate-line requirement is not met.";
+  if($("slipSeparate").value==="unsure")verdict+=" — check whether it is a separate, labelled line.";
+  $("payslipVerdict").textContent=verdict;
+  $("expectedOut").textContent=money(expected);
+  $("shownOut").textContent=money(shown);
+  $("slipDiffOut").textContent=(diff>=0?"+":"")+money(diff);
+  $("slipRateOut").textContent=fmt(actualRate)+"% of total pay (minimum 12.07%)";
+  $("payslipNote").textContent="Rolled-up holiday pay must be at least 12.07% of total pay, paid at the same time as wages, and shown as a separate line. Small rounding differences of a few pence can happen; a shortfall of pounds is worth querying with payroll.";
+  res.hidden=false;
+}
+function calculateAverage(){
+  var err=$("averageError"),res=$("averageResults");err.hidden=true;err.textContent="";
+  var parsed=parseList($("weeklyPays").value),errors=parsed.errors.slice();
+  var avgHrs=parseFloat($("avgHoursWeek").value),leaveHrs=parseFloat($("leaveHours").value);
+  if(!parsed.vals.length)errors.push("Enter at least one paid week.");
+  if(!isFinite(avgHrs)||avgHrs<=0)errors.push("Enter average hours per week greater than 0.");
+  if(!isFinite(leaveHrs)||leaveHrs<0)errors.push("Hours of leave cannot be negative.");
+  if(errors.length){err.textContent=errors.join(" ");err.hidden=false;res.hidden=true;return}
+  var total=parsed.vals.reduce(function(a,b){return a+b},0),avg=total/parsed.vals.length,
+      hourly=avg/avgHrs,leavePay=hourly*leaveHrs;
+  $("leavePayOut").textContent="Pay for "+fmt(leaveHrs)+" hours of leave: "+money(leavePay);
+  $("weeksOut").textContent=parsed.vals.length+" paid week(s)";
+  $("avgTotalOut").textContent=money(total);
+  $("avgWeeklyOut").textContent=money(avg);
+  $("avgHourlyOut").textContent=money(hourly)+"/hour";
+  $("averageNote").textContent=parsed.vals.length<52
+    ?"Note: the statutory method uses 52 paid weeks. This average uses only the "+parsed.vals.length+" week(s) entered, so it is less reliable — add more weeks, counting back and skipping weeks with no pay, for the full method."
+    :"Based on 52 paid weeks. If you entered more than 52 weeks, use only the most recent 52 paid weeks for the statutory method.";
+  res.hidden=false;
+}
+$("accrualBtn").addEventListener("click",calculateAccrual);
+$("accrualExampleBtn").addEventListener("click",function(){$("hoursList").value="68";$("hourlyRate").value="13";$("totalPay").value="884";$("takenHours").value="0";$("dayLength").value="";calculateAccrual()});
+$("accrualMultiBtn").addEventListener("click",function(){$("hoursList").value="30\n15";$("hourlyRate").value="11";$("totalPay").value="";$("takenHours").value="0";calculateAccrual()});
+$("payslipBtn").addEventListener("click",calculatePayslip);
+$("payslipExampleBtn").addEventListener("click",function(){$("slipTotalPay").value="1000";$("slipHolidayPay").value="120.70";calculatePayslip()});
+$("payslipShortBtn").addEventListener("click",function(){$("slipTotalPay").value="800";$("slipHolidayPay").value="80";calculatePayslip()});
+$("averageBtn").addEventListener("click",calculateAverage);
+$("averageExampleBtn").addEventListener("click",function(){$("weeklyPays").value="320\n360\n280\n400";$("avgHoursWeek").value="34";$("leaveHours").value="16";calculateAverage()});
+$("accrualCopyBtn").addEventListener("click",function(){
+  var t=$("accruedOut").textContent+" | "+$("accrualSummary").textContent+" | Value: "+$("accruedValueOut").textContent+", Remaining: "+$("remainingOut").textContent;
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){alert("Result copied.")})}else{alert(t)}
+});
+$("accrualShareBtn").addEventListener("click",function(){
+  var url=location.href;
+  if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){alert("Share link copied. It contains only the numbers you entered.")})}else{alert(url)}
+});
+(function loadFromUrl(){
+  try{var p=new URLSearchParams(location.search);if(!p.get("hours")&&!p.get("tab"))return;
+  if(p.get("tab")==="payslip")showTab("payslip");else if(p.get("tab")==="average")showTab("average");
+  if(p.get("hours")){$("hoursList").value=p.get("hours").split(",").join("\n")}
+  if(p.get("rate"))$("hourlyRate").value=p.get("rate");
+  if(p.get("day"))$("dayLength").value=p.get("day");
+  if(p.get("taken"))$("takenHours").value=p.get("taken");
+  if(p.get("pay"))$("totalPay").value=p.get("pay");
+  if(p.get("period"))$("payPeriod").value=p.get("period");
+  calculateAccrual();
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
