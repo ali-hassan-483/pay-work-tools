@@ -92,6 +92,15 @@ summary{display:flex;justify-content:space-between;align-items:center;gap:14px;p
 summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:24px;line-height:1;color:var(--accent);flex:none}
 details[open] summary::after{content:"\2013"}
 details p{margin:0;padding:0 20px 18px;color:#334155}
+textarea{width:100%;min-height:120px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font:inherit;font-size:18px;background:#fff;color:var(--ink);resize:vertical}
+textarea:focus{outline:3px solid rgba(59,130,246,.35);border-color:var(--accent)}
+.warn{background:#fffbeb;border:1px solid #fde68a;color:#78350f;border-radius:14px;padding:16px 20px;margin:0 0 28px}
+#accrualWarn.warn{margin:20px 0 0;border-radius:12px;padding:14px 18px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+button.tab{background:#e6efff;color:#0f2a5c}button.tab:hover{background:#d3e2ff}
+button.tab[aria-selected="true"]{background:var(--navy);color:#fff}
+.tool+.tool{margin-top:16px}
+@media(max-width:640px){.tabs button{flex:1 1 100%}}
 code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
 footer.site{background:var(--navy);color:#b9cbec;margin-top:24px;padding:34px 0 44px;font-size:14px}
 footer.site p{margin:0 0 8px}footer.site a{color:#fff}
@@ -103,7 +112,7 @@ footer.site p{margin:0 0 8px}footer.site a{color:#fff}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><div class="wrap bar"><a class="brand" href="index.html"><span class="logo" aria-hidden="true">P&amp;W</span><span>Pay &amp; Work Tools</span></a><nav aria-label="Main"><a href="shift-differential-overtime-calculator.html">Shift &amp; Overtime Calculator</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></nav></div></header>
+<header class="site"><div class="wrap bar"><a class="brand" href="index.html"><span class="logo" aria-hidden="true">P&amp;W</span><span>Pay &amp; Work Tools</span></a><nav aria-label="Main"><a href="shift-differential-overtime-calculator.html">Shift &amp; Overtime Calculator</a><a href="uk-irregular-hours-holiday-pay-calculator.html">UK Holiday Pay Calculator</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></nav></div></header>
 <main class="wrap" id="main">
 <!-- ===== ADSTERRA AD SLOT 1: TOP BANNER ===== -->
 <!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. Use banner or native code only. Do NOT paste popunder or Social Bar code here. This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
@@ -117,12 +126,14 @@ footer.site p{margin:0 0 8px}footer.site a{color:#fff}
 <section class="card"><h2>Tools</h2><div class="tool"><div><h3><a href="shift-differential-overtime-calculator.html">Shift Differential + Overtime Calculator (FLSA &amp; California)</a></h3>
 <p>Base rate, night/weekend differential and hours per day → blended regular rate, overtime, California double time and weekly gross pay. Includes a day-by-day breakdown and a payslip check.</p>
 <p class="small">Live now. Works on mobile and desktop.</p></div><a class="cta" href="shift-differential-overtime-calculator.html">Calculate my pay &rarr;</a></div>
-<p class="coming">Coming next: UK irregular-hours holiday pay and US 1099 quarterly estimated tax — each published only when finished and tested.</p></section>
+<div class="tool"><div><h3><a href="uk-irregular-hours-holiday-pay-calculator.html">UK Holiday Pay Calculator for Irregular Hours</a></h3>
+<p>For zero-hours, casual and part-year workers in Great Britain: holiday accrued at 12.07% of hours worked, a rolled-up holiday pay payslip check, and pay for leave taken from a 52-week average.</p>
+<p class="small">Live now. Works on mobile and desktop.</p></div><a class="cta" href="uk-irregular-hours-holiday-pay-calculator.html">Calculate holiday pay &rarr;</a></div>
+<p class="coming">Coming next: US 1099 quarterly estimated tax — published only when finished and tested.</p></section>
 <!-- ===== ADSTERRA AD SLOT 2: BOTTOM BANNER ===== -->
 <!-- PASTE YOUR ADSTERRA BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. Use banner or native code only. Do NOT paste popunder or Social Bar code here. This slot is invisible to visitors until Adsterra code is pasted inside it. Keep the div. -->
 <div class="ad-slot" id="ad-slot-2" data-ad-slot="bottom-banner">
-  <script async="async" data-cfasync="false" src="https://bauval.org/21/7c40d392fadb47e47e891b7e176e9310"></script>
-  <div id="container-7c40d392fadb47e47e891b7e176e9310"></div>
+<!-- PASTE YOUR ADSTERRA CODE HERE -->
 </div>
 <section class="card"><h2>How these tools are built</h2>
 <ul class="features">
