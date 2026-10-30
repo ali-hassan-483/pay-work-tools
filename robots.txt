@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pay-work-tools.vercel.app/sitemap.xml
