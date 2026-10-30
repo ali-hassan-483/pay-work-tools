@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="apple-touch-icon" href="favicon.jpg">
+<title>How shift differential affects overtime pay: the FLSA blended rate, plus California — WageWise</title>
+<meta name="description" content="How a shift differential changes overtime pay: the FLSA blended regular rate step by step, federal overtime, California daily overtime, double time and the 7th-day rule, worked examples, and common mistakes.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://wagewisetools.vercel.app/shift-differential-overtime-guide.html">
+<style>
+:root{--navy:#0b1b3a;--accent:#1a63f0;--accent-d:#1250c9;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--bg:#f3f6fb;--soft:#eef4ff;--sh:0 1px 2px rgba(15,23,42,.06),0 10px 30px rgba(15,23,42,.07)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}[hidden]{display:none!important}
+body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:#1250c9;text-underline-offset:2px}a:hover{color:#0b3a9a}
+:focus-visible{outline:3px solid #3b82f6;outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:8px 14px;border-radius:8px;z-index:100}.skip:focus{left:8px}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+header.site{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 20px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:18px}.brand:hover{color:#fff}
+.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#4d8dff,#1a63f0);font-size:14px;letter-spacing:-.5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+header nav{display:flex;flex-wrap:wrap;gap:2px 4px}
+header nav a{color:#d3e0f8;text-decoration:none;font-size:15px;padding:8px 12px;border-radius:8px}
+header nav a:hover,header nav a[aria-current=page]{background:rgba(255,255,255,.13);color:#fff}
+header a:focus-visible,footer a:focus-visible,.hero a:focus-visible,.pagehead a:focus-visible{outline-color:#93c5fd}
+main.wrap{padding-top:24px;padding-bottom:16px}
+.ad-slot{display:flex;flex-direction:column;align-items:center;margin:0;padding:0;border:0;background:none;min-height:0;overflow:hidden}
+.ad-slot>*{margin:20px auto;max-width:100%}
+.show-slots .ad-slot{min-height:110px;margin:0 0 28px;border:2px dashed #94a3b8;border-radius:14px;background:#f8fafc}
+.show-slots .ad-slot::before{content:"AD SLOT: " attr(id) " (" attr(data-ad-slot) ") - paste ad code inside this div";color:#475569;font-size:14px;font-weight:700;text-align:center;padding:42px 14px}
+.show-slots .ad-slot>*{margin:12px auto}
+h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
+.coffee{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:#fff;border-radius:18px;box-shadow:var(--sh);padding:22px 28px;margin:0 0 28px}
+.coffee p{margin:0;font-weight:600}
+.coffee-btn{display:inline-block;background:#ffdd00;color:#0f172a;font-weight:800;font-size:17px;padding:13px 24px;border-radius:12px;text-decoration:none;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
+.coffee-btn:hover{background:#f5cf00;color:#0f172a}
+.card{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:32px;margin:0 0 28px}
+.card h2{font-size:26px;margin:0 0 18px}.card h3{font-size:19px;margin:0 0 10px}
+.small,.hint{font-size:14px;color:var(--muted)}.hint{margin:8px 0 0}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b1b3a 0%,#13357a 62%,#1a63f0 135%);color:#fff;border-radius:24px;padding:56px 40px;margin:8px 0 28px;box-shadow:var(--sh)}
+.hero::after{content:"";position:absolute;right:-90px;top:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.4),transparent 70%)}
+.hero>*{position:relative;z-index:1;max-width:720px}
+.hero h1{font-size:clamp(34px,5.5vw,56px);line-height:1.08;margin:0 0 16px;letter-spacing:-.025em}
+.hero .lead{font-size:clamp(17px,2.2vw,21px);color:#dbe7ff;margin:0 0 12px}
+.hero .trust{font-size:15px;color:#b9cbec;margin:0 0 28px}
+.cta{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:18px;padding:15px 28px;border-radius:12px;text-decoration:none;box-shadow:0 0 0 3px rgba(255,255,255,.22),0 8px 20px rgba(26,99,240,.35)}
+.cta:hover{background:var(--accent-d);color:#fff}
+.pagehead{background:linear-gradient(135deg,#0b1b3a,#13357a);color:#fff;border-radius:20px;padding:34px 36px;margin:8px 0 28px;box-shadow:var(--sh)}
+.pagehead h1{margin:0 0 12px;font-size:clamp(28px,4.2vw,42px);line-height:1.12}
+.pagehead p{margin:0 0 8px;color:#dbe7ff}.pagehead p:last-child{margin-bottom:0}.pagehead .small{color:#b9cbec}.pagehead a{color:#fff}
+.tool{display:grid;grid-template-columns:1fr auto;gap:14px 32px;align-items:center;background:var(--soft);border:1px solid #cfe0ff;border-radius:16px;padding:26px}
+.tool h3{margin:0 0 8px;font-size:22px}.tool p{margin:0 0 8px}.tool p:last-child{margin:0}
+.coming{margin:18px 0 0;font-size:14px;color:var(--muted)}
+.features{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.features li{padding:20px;border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;background:#fbfdff}
+.features strong{display:block;font-size:17px;margin-bottom:6px}
+.prose h2{font-size:22px;margin:30px 0 10px;padding-top:24px;border-top:1px solid var(--line)}.prose h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.prose p{margin:0 0 14px}
+.notice{background:#fff8e1;border:1px solid #f1d98a;border-radius:12px;padding:14px 18px;margin:0 0 28px;color:#5b4300}
+.placeholder{background:#fff3bf;color:#7a4b00;padding:2px 8px;border-radius:6px;font-weight:700}
+label{display:block;font-weight:600;margin:20px 0 8px}
+input,select{width:100%;min-height:54px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font:inherit;font-size:18px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:3px solid rgba(59,130,246,.35);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.days-set{border:1.5px solid var(--line);border-radius:16px;padding:18px 20px 22px;margin:26px 0 0;min-width:0}
+.days-set legend{padding:0 8px}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.days label{margin-top:8px;font-size:15px;text-align:center}.days input{padding:12px 6px;text-align:center}
+button{font:inherit;font-weight:700;font-size:17px;min-height:50px;padding:12px 24px;border:0;border-radius:12px;background:var(--accent);color:#fff;cursor:pointer}
+button:hover{background:var(--accent-d)}button.secondary{background:#e6efff;color:#0f2a5c}button.secondary:hover{background:#d3e2ff}
+button.sm{min-height:38px;padding:6px 14px;font-size:15px;margin-left:6px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.error{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:12px;padding:14px 18px;margin-top:20px;font-weight:600}
+.results{margin-top:30px;background:linear-gradient(180deg,#eaf2ff,#f8fbff);border:1px solid #cfe0ff;border-radius:20px;padding:28px}
+.results h2{font-size:18px;color:var(--muted);margin:0}
+.big{font-size:clamp(28px,5vw,42px);font-weight:800;color:var(--navy);margin:6px 0 8px;letter-spacing:-.02em;line-height:1.15}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}
+.row{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.row span{font-size:14px;color:var(--muted)}.row strong{font-size:18px;overflow-wrap:anywhere}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0 14px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);font-size:15px}
+th{background:#f1f5f9;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}tr:last-child td{border-bottom:0}
+.steps p{margin:0 0 12px;padding:16px 20px;background:#f5f9ff;border-left:4px solid var(--accent);border-radius:0 12px 12px 0}.steps p:last-of-type{margin-bottom:0}
+.ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ex{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:24px}.ex p:last-child{margin-bottom:0}
+.card ul:not(.features){padding-left:22px}.card li{margin-bottom:8px}
+.sources{border-left:5px solid var(--accent)}.sources p{margin:0;overflow-wrap:anywhere}
+details{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;background:#fff}
+details[open]{border-color:#bcd2ff;background:#fbfdff}
+summary{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:24px;line-height:1;color:var(--accent);flex:none}
+details[open] summary::after{content:"\2013"}
+details p{margin:0;padding:0 20px 18px;color:#334155}
+textarea{width:100%;min-height:120px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font:inherit;font-size:18px;background:#fff;color:var(--ink);resize:vertical}
+textarea:focus{outline:3px solid rgba(59,130,246,.35);border-color:var(--accent)}
+.warn{background:#fffbeb;border:1px solid #fde68a;color:#78350f;border-radius:14px;padding:16px 20px;margin:0 0 28px}
+#accrualWarn.warn{margin:20px 0 0;border-radius:12px;padding:14px 18px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+button.tab{background:#e6efff;color:#0f2a5c}button.tab:hover{background:#d3e2ff}
+button.tab[aria-selected="true"]{background:var(--navy);color:#fff}
+.tool+.tool{margin-top:16px}
+@media(max-width:640px){.tabs button{flex:1 1 100%}}
+#calcResults>.row{flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:10px 0}
+#calcResults>.row span{font-size:16px;color:var(--ink)}#calcResults>.row strong{text-align:right}
+#calcResults>.small{margin:0}#calcResults .warn{margin:16px 0 0}#calcResults table{margin-top:16px;background:#fff}
+.ex-grid.x3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){.ex-grid.x3{grid-template-columns:1fr}}
+code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
+footer.site{background:var(--navy);color:#b9cbec;margin-top:24px;padding:34px 0 44px;font-size:14px}
+footer.site p{margin:0 0 8px}footer.site a{color:#fff}
+@media(max-width:900px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.metrics,.ex-grid,.tool{grid-template-columns:1fr}.days{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
+@media(max-width:640px){.coffee{padding:20px 18px}.coffee-btn{display:block;width:100%;text-align:center}.wrap{padding:0 16px}.grid{grid-template-columns:1fr}.card{padding:22px 18px;border-radius:16px}.card h2{font-size:23px}.hero{padding:36px 22px;border-radius:20px}.pagehead{padding:26px 22px}.features{grid-template-columns:1fr}header nav a{font-size:14px;padding:6px 10px}.results{padding:20px 16px}.days-set{padding:14px 12px 18px}th,td{padding:8px 6px;font-size:14px}.cta{display:block;text-align:center}.actions button{flex:1 1 auto}}
+@media print{.coffee,.ad-slot,button,header.site,.skip,.actions{display:none!important}body{background:#fff}.card,.results,.hero,.pagehead{box-shadow:none}footer.site{background:#fff;color:#333}footer.site a{color:#000}}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does a shift differential increase my overtime pay?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Under the FLSA it is folded into the regular rate before overtime is calculated, so overtime is 1.5 times the blended rate, not 1.5 times the base rate."}}, {"@type": "Question", "name": "Does the FLSA require a shift differential?", "acceptedAnswer": {"@type": "Answer", "text": "No. A differential is a matter of agreement between employer and employee. The FLSA does not require extra pay for night, weekend, or holiday work as such. Once a differential is paid, it generally must be included in the regular rate for overtime."}}, {"@type": "Question", "name": "What is the difference between a flat dollar differential and a percentage differential?", "acceptedAnswer": {"@type": "Answer", "text": "A flat amount stays the same when your base rate rises. A percentage differential rises with your base rate. Over time, after raises, a percentage differential usually keeps more of its value."}}, {"@type": "Question", "name": "When does California double time apply?", "acceptedAnswer": {"@type": "Answer", "text": "Generally after 12 hours in a workday, and after 8 hours on the seventh consecutive day of work in a workweek. The first 8 hours on the seventh day are generally at 1.5×. Exemptions and alternative workweek schedules change this."}}, {"@type": "Question", "name": "Why is my payslip different from this result?", "acceptedAnswer": {"@type": "Answer", "text": "Common reasons: bonuses or other premiums included in the real regular rate, a different workweek definition, an alternative workweek schedule, rounding, or an employer calculating overtime on the base rate only. Keep the breakdown and ask payroll to show the regular rate they used."}}, {"@type": "Question", "name": "Can I use this for salaried or exempt workers?", "acceptedAnswer": {"@type": "Answer", "text": "No. This guide is for non-exempt hourly workers. Exempt, salaried, and special-category workers have different rules."}}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap bar"><a class="brand" href="index.html"><span class="logo" aria-hidden="true">W</span><span>WageWise</span></a><nav aria-label="Main"><a href="shift-differential-overtime-calculator.html">Shift &amp; Overtime Calculator</a><a href="uk-irregular-hours-holiday-pay-calculator.html">UK Holiday Pay Calculator</a><a href="us-1099-quarterly-estimated-tax-calculator.html">US 1099 Tax Calculator</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></nav></div></header>
+<main class="wrap" id="main">
+
+<!-- ===== AD SLOT 1: TOP BANNER ===== -->
+<!-- PASTE YOUR BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until ad code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-1" data-ad-slot="top-banner">
+
+</div>
+
+<section class="pagehead"><h1>How shift differential affects overtime pay: the FLSA blended rate, plus California</h1>
+<p><strong>For hourly, shift, night, and weekend workers in the US.</strong> This guide explains how a shift differential changes your overtime rate, how California's daily rules differ from the federal weekly rule, and the mistakes that leave night workers underpaid. It covers the general rules only. Exemptions, union contracts, and alternative workweek schedules can change the answer for a particular worker.</p>
+<p><a class="cta" href="shift-differential-overtime-calculator.html">Calculate your shift pay</a></p>
+<p class="small">Estimate only. Not legal, tax or payroll advice. See the <a href="disclaimer.html">disclaimer</a>.</p></section>
+
+<section class="card prose">
+<h2>What a shift differential is, and why the FLSA does not require one</h2>
+<p>A shift differential is extra pay per hour for working hours most people would rather not work: nights, evenings, weekends, or holidays. It is usually stated in one of two ways: a flat amount, for example $2.00 per hour, or a percentage of the base rate, for example 10% of base pay.</p>
+<p>No federal law requires an employer to pay a shift differential. It is a matter of agreement between employer and employee, or of a union contract. But once a differential is paid, federal law does govern how it interacts with overtime, and that is where most of the money is lost or found.</p>
+
+<h2>How the blended regular rate works, step by step</h2>
+<p>Under the Fair Labor Standards Act, overtime is paid at 1.5 times the "regular rate of pay", and the regular rate legally includes shift differentials. The steps are:</p>
+<p><strong>Step 1 — Differential per hour.</strong> Flat amount: the dollar amount entered. Percentage: base rate × percentage ÷ 100.</p>
+<p><strong>Step 2 — Straight-time earnings.</strong> (Base rate × total hours) + (differential per hour × differential-shift hours).</p>
+<p><strong>Step 3 — Blended regular rate.</strong> Straight-time earnings ÷ total hours.</p>
+<p><strong>Step 4 — Overtime premium.</strong> Federal: 0.5 × regular rate for each hour over 40 in the week. The 0.5, not 1.5, is the premium, because the straight-time earnings in Step 2 already counted those hours once at the regular rate.</p>
+<p><strong>Step 5 — Gross pay.</strong> Straight-time earnings + overtime premium (+ double-time premium in California, where it applies).</p>
+<p>The key point: the differential raises the regular rate itself, so it raises the overtime rate too. It is not a side payment added after overtime is calculated.</p>
+
+<h2>Federal overtime: time and a half on the blended rate, not the base rate</h2>
+<h3>Worked example: federal, all hours on nights</h3>
+<p>Base $20, $2 night differential, 10 hours Monday to Friday = 50 hours, all on nights, federal rules. Straight-time earnings = ($20 × 50) + ($2 × 50) = <strong>$1,100</strong>. Blended regular rate = $1,100 ÷ 50 = <strong>$22</strong>. Overtime premium = 0.5 × $22 × 10 = <strong>$110</strong>. Gross = <strong>$1,210</strong>.</p>
+<p>If overtime had been calculated on the $20 base rate only, with the differential paid straight, gross would be $1,200, which is $10 less. That $10 a week is $520 a year, from this one error alone, before any other premium is considered.</p>
+<p>Try your own rates in the <a href="shift-differential-overtime-calculator.html">shift differential + overtime calculator</a>.</p>
+</section>
+
+<!-- ===== AD SLOT 2: IN-CONTENT BANNER ===== -->
+<!-- PASTE YOUR BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until ad code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-2" data-ad-slot="in-content-banner">
+
+</div>
+
+<section class="card prose">
+<h2>California: daily overtime, double time, and the 7th consecutive day</h2>
+<p>California is stricter than federal law, because overtime applies daily as well as weekly. Under California Labor Code § 510, for non-exempt workers on a standard schedule: hours 1–8 in a workday at the regular rate; hours 8–12 in a workday at 1.5× the regular rate; hours over 12 in a workday at 2× the regular rate (double time); and on the 7th consecutive workday in a workweek, the first 8 hours at 1.5× and hours over 8 at 2×.</p>
+<p>California overtime can therefore be owed even when the week's total is under 40 hours.</p>
+<h3>Worked example: California, one long day</h3>
+<p>Base $20, no differential, 14 hours in one day, California rules. Regular 8 hours, overtime 4 hours (over 8 up to 12), double time 2 hours (over 12). Gross = (8 × $20) + (4 × $30) + (2 × $40) = <strong>$360</strong>, even if the week total is under 40 hours.</p>
+<h3>Worked example: California, 7th consecutive day</h3>
+<p>Base $20, no differential, 10 hours on the 7th consecutive day of work in a workweek. First 8 hours at 1.5×, remaining 2 hours at 2×. Gross for that day = (8 × $30) + (2 × $40) = <strong>$320</strong>.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+<li><strong>Calculating overtime on the base rate only.</strong> The most expensive mistake. The differential must generally be folded into the regular rate before overtime is calculated, under 29 CFR 778.207. Overtime at exactly 1.5 × base rate, for a worker who regularly earns a differential, is a warning sign. Keep the breakdown and ask payroll to show the regular rate they used.</li>
+<li><strong>Treating the differential as a separate bonus.</strong> A differential is not a bonus paid on top of a finished overtime calculation. It is part of straight-time earnings, and therefore part of the regular rate.</li>
+<li><strong>Thinking California overtime is weekly only.</strong> California has daily overtime and double time. A single 14-hour day earns overtime and double time even in a short week.</li>
+<li><strong>Using the tool for salaried or exempt workers.</strong> This guide and the calculator are for non-exempt hourly workers. Exempt, salaried, and special-category workers have different rules. If you are unsure whether you are exempt, check with your state labour department.</li>
+<li><strong>Comparing flat and percentage differentials without modelling both.</strong> A flat dollar amount stays the same when the base rate rises. A percentage differential rises with the base rate, so after raises it usually keeps more of its value. Model both when comparing job offers.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Questions people ask</h2>
+<details><summary>Does a shift differential increase my overtime pay?</summary><p>Yes. Under the FLSA it is folded into the regular rate before overtime is calculated, so overtime is 1.5 times the blended rate, not 1.5 times the base rate.</p></details>
+<details><summary>Does the FLSA require a shift differential?</summary><p>No. A differential is a matter of agreement between employer and employee. The FLSA does not require extra pay for night, weekend, or holiday work as such. Once a differential is paid, it generally must be included in the regular rate for overtime.</p></details>
+<details><summary>What is the difference between a flat dollar differential and a percentage differential?</summary><p>A flat amount stays the same when your base rate rises. A percentage differential rises with your base rate. Over time, after raises, a percentage differential usually keeps more of its value.</p></details>
+<details><summary>When does California double time apply?</summary><p>Generally after 12 hours in a workday, and after 8 hours on the seventh consecutive day of work in a workweek. The first 8 hours on the seventh day are generally at 1.5×. Exemptions and alternative workweek schedules change this.</p></details>
+<details><summary>Why is my payslip different from this result?</summary><p>Common reasons: bonuses or other premiums included in the real regular rate, a different workweek definition, an alternative workweek schedule, rounding, or an employer calculating overtime on the base rate only. Keep the breakdown and ask payroll to show the regular rate they used.</p></details>
+<details><summary>Can I use this for salaried or exempt workers?</summary><p>No. This guide is for non-exempt hourly workers. Exempt, salaried, and special-category workers have different rules.</p></details>
+
+</section>
+
+<section class="card prose">
+<h2>Sources</h2>
+<p class="small">California Department of Industrial Relations, Overtime FAQ (1.5× over 8 hours up to 12, and for the first 8 hours on the 7th consecutive day; double time over 12 and over 8 on the 7th day): <a href="https://www.dir.ca.gov/dlse/faq_overtime.htm">dir.ca.gov/dlse/faq_overtime.htm</a>. FLSA regular-rate treatment of shift differentials: <a href="https://legalclarity.org/shift-differentials-and-the-regular-rate-of-pay-flsa-rules/">LegalClarity summary of 29 CFR 778.207</a> and <a href="https://www.overtime-flsa.com/blog/shift-differential-pay-and-overtime-are-healthcare-employers-correctly-calculating-your-wages/">overtime-flsa.com</a>. Sources as used in the calculator and checked 27 October 2026. Always check the primary source and your state labour department for your situation.</p>
+<p class="small">Guide written 30 October 2026. <a href="disclaimer.html">Full disclaimer</a>.</p>
+</section>
+
+<section class="card">
+<h2>Try it with your own rates</h2>
+<p>Run the same maths on your own base rate, differential, and hours.</p>
+<p><a class="cta" href="shift-differential-overtime-calculator.html">Calculate your shift pay</a></p>
+</section>
+
+<!-- ===== AD SLOT 3: BOTTOM BANNER ===== -->
+<!-- PASTE YOUR BANNER / NATIVE AD CODE INSIDE THE DIV BELOW. -->
+<!-- Use banner or native code only in this slot. Do NOT paste popunder or Social Bar code here. -->
+<!-- This slot is invisible to visitors until ad code is pasted inside it. Keep the div. -->
+<div class="ad-slot" id="ad-slot-3" data-ad-slot="bottom-banner">
+
+</div>
+
+
+</main>
+<footer class="site"><div class="wrap"><p>WageWise — free pay calculators. <a href="index.html">All tools</a> · <a href="about.html">About</a> · <a href="privacy-policy.html">Privacy Policy</a> · <a href="disclaimer.html">Disclaimer</a></p>
+<p>All calculations run in your browser. This site does not collect pay data you enter.</p></div></footer>
+</body>
+</html>
